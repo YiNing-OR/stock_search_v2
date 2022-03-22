@@ -38,8 +38,9 @@ class LineGraphModelState extends State<LineGraphModel> {
             LineSeries<ChartData, String>(
                 enableTooltip: true,
                 dataSource: widget.spots,
-                xValueMapper: (ChartData data, _) => data.x.toString().substring(0, data.x.toString().indexOf(' ')),
-                yValueMapper: (ChartData data, _) => data.y,
+                //xValueMapper: (ChartData data, _) => data.x.toString().substring(0, data.x.toString().indexOf(' ')),
+                xValueMapper: (ChartData data, _) => data.x,
+                yValueMapper: (ChartData data, _) => double.parse(data.y),
 
             )
           ]
@@ -50,6 +51,6 @@ class LineGraphModelState extends State<LineGraphModel> {
 }
 class ChartData {
   ChartData(this.x, this.y);
-  final DateTime x;
-  final double y;
+  final String x;
+  final String y;
 }

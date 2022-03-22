@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Component/Date%20Control.dart';
+import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Component/Graphs/Date%20Control.dart';
 import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Component/Graphs/Line%20Graph%20Model.dart';
 
 
@@ -22,8 +22,8 @@ class SentimentGraphState extends State<SentimentGraph> {
           child: Text("Sentiment Score"),
         ),
         LineGraphModel(
-          spots: List<DateTime>.generate(DateControl.getDateLength(widget.duration), (i) => DateTime.now()
-              .subtract(Duration(days: i))).map((x) => ChartData(x, -40)).toList(),
+          // spots: List<DateTime>.generate(DateControl.getDateLength(widget.duration), (i) => DateTime.now()
+          //     .subtract(Duration(days: i))).map((x) => ChartData(x, -40)).toList(),
         )
       ],
     );

@@ -4,6 +4,7 @@ import 'Component/Individual Stock Price Card.dart';
 import 'Component/Individual Stock Score Card.dart';
 import 'Component/Graphs/Price Graph.dart';
 import 'Component/Graphs/Sentiment Graph.dart';
+import 'Component/Test Graph.dart';
 import 'Data/obtainData.dart';
 
 class StockInformation extends StatefulWidget {
@@ -13,6 +14,7 @@ class StockInformation extends StatefulWidget {
 
 class StockInformationState extends State<StockInformation> {
   List<bool> isSelected = [true,false,false,false];
+
   String extractDuration(List isSelected){
     int correct_index;
     for (int index = 0; index< isSelected.length; index++){
@@ -43,8 +45,10 @@ class StockInformationState extends State<StockInformation> {
     return" ";
   }
 
+
   @override
   Widget build(BuildContext context){
+    pullData();
     return Column(
       children: [
         ToggleButtons(
@@ -87,14 +91,15 @@ class StockInformationState extends State<StockInformation> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 FutureBuilder(
-                    future: getHttprequest("AAPL"),
+                    future: fetchStockData(),
                     builder: (context,snapshot){
                       if (snapshot.hasData) {
+                        String price = snapshot.data.values.first;
                         // Build the widget with data.
                         return StockPriceCard(
                           stockTicker: "AAPL",
                           companyName: "Apple Corporation",
-                          price: "${snapshot.data.substring(0, snapshot.data.length - 2)}",
+                          price: "${price.substring(0, price.length - 2)}",
                         );
                       } else {
                         // We can show the loading view until the data comes back.
@@ -114,9 +119,11 @@ class StockInformationState extends State<StockInformation> {
               children: <Widget>[
                 Container(
                   width: MediaQuery.of(context).size.width * 0.25,
+                  height: 150,
                   child: PriceGraph(
                     duration: extractDuration(isSelected),
                   ),
+                  // child: TestGraphModel(),
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.25,
