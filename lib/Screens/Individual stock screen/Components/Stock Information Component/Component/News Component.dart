@@ -12,6 +12,8 @@ class NewsComponent extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Column(
+
+
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
 

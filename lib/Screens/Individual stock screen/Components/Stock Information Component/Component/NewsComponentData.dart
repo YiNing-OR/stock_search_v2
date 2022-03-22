@@ -30,31 +30,34 @@ class ArticleCardState extends State<ArticleCard> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(widget.articleTitle,
-                  style: TextStyle(fontSize: 30),),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(widget.articleDate,
-                  style: TextStyle(fontSize: 15),),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(widget.articleSummary,
-                  style: TextStyle(fontSize: 15),),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(widget.articleLink,
-                  style: TextStyle(fontSize: 15),),
-              ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                child:Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(widget.articleTitle,
+                    style: TextStyle(fontSize: 30),),
+                )),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(widget.articleDate,
+                    style: TextStyle(fontSize: 15),),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(widget.articleSummary,
+                    style: TextStyle(fontSize: 15),),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(widget.articleLink,
+                    style: TextStyle(fontSize: 15),),
+                ),
 
-            ],
+              ],
+            ),
           ),
 
         ],

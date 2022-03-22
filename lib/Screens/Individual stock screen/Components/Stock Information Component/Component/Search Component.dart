@@ -30,9 +30,11 @@ class SearchComponentState extends State<SearchComponent> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
-              child: IconButton(
-                  icon: Icon(Icons.refresh,size: 35,)
+            Expanded(
+              child: Container(
+                child: IconButton(
+                    icon: Icon(Icons.refresh,size: 35,)
+                ),
               ),
             ),
             SizedBox(width: 30,),

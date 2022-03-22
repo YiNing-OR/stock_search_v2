@@ -26,32 +26,42 @@ class StockPriceCardState extends State<StockPriceCard> {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(widget.stockTicker,
-                  style: TextStyle(fontSize: 30),),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(widget.companyName,
-                  style: TextStyle(fontSize: 15),),
-              ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('\$'+widget.price,
-                  style: TextStyle(fontSize: 30),),
-              ),
-            ],
-          ),
+    children: <Widget>[
+      Expanded(
+               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(widget.stockTicker,
+                        style: TextStyle(fontSize: 30),),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(widget.companyName,
+                        style: TextStyle(fontSize: 15),),
+                    ),
+                  ),
+                ],
+            ),
+             ),
+
+      Expanded(
+        child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: <Widget>[
+                Expanded(
+                child:Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('\$'+widget.price,
+                    style: TextStyle(fontSize: 30),),
+                ),
+                )],
+            ),
+      ),
         ],
       ),
 

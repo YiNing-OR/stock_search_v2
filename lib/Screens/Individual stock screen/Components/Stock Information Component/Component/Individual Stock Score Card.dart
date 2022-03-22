@@ -25,12 +25,14 @@ class StockScoreCardState extends State<StockScoreCard> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text('Overall: '+widget.bullOrBear,
-              style: TextStyle(
-                  fontSize: 20,
-                  color: widget.bullOrBear == "Bull" ? Colors.green:Colors.red
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Overall: '+widget.bullOrBear,
+                style: TextStyle(
+                    fontSize: 20,
+                    color: widget.bullOrBear == "Bull" ? Colors.green:Colors.red
+                ),
               ),
             ),
           ),Padding(
