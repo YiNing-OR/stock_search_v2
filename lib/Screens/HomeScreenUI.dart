@@ -85,7 +85,10 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => IndividualStockScreen()));
+                      builder: (context) => IndividualStockScreen(
+                        ticker: "AAPL",
+                        companyName: "Apple Inc",
+                      )));
             },
             child: Text('Placeholder button: press for next page'),
           ),

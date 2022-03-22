@@ -5,6 +5,9 @@ import 'Components/Stock Information Component/StockInfo.dart';
 
 
 class IndividualStockScreen extends StatelessWidget {
+  final String ticker;
+  final String companyName;
+  const IndividualStockScreen({Key key, this.ticker,this.companyName}) : super(key: key);
   @override
   Widget build(BuildContext context) {
       return Scaffold(
@@ -23,7 +26,10 @@ class IndividualStockScreen extends StatelessWidget {
           //     scrollDirection: Axis.vertical,
           //     child: StockInformation(),
           // ),
-          StockInformation(),
+          StockInformation(
+            ticker: this.ticker,
+            companyName: this.companyName,
+          ),
             SizedBox(height:20),
             NewsComponent(),
           ],

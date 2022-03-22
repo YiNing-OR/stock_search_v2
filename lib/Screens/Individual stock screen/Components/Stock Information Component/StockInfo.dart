@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Component/News%20Component.dart';
 import 'Component/Individual Stock Price Card.dart';
 import 'Component/Individual Stock Score Card.dart';
 import 'Component/Graphs/Price Graph.dart';
 import 'Component/Graphs/Sentiment Graph.dart';
-import 'Component/Test Graph.dart';
 import 'Data/obtainData.dart';
 
 class StockInformation extends StatefulWidget {
+  final String ticker;
+  final String companyName;
+  const StockInformation({Key key, this.ticker,this.companyName}) : super(key: key);
   @override
   State<StockInformation> createState() => StockInformationState();
 }
@@ -48,7 +49,8 @@ class StockInformationState extends State<StockInformation> {
 
   @override
   Widget build(BuildContext context){
-    pullData();
+    print("hello");
+    pullData(widget.ticker);
     return Column(
       children: [
         ToggleButtons(
@@ -97,8 +99,8 @@ class StockInformationState extends State<StockInformation> {
                         String price = snapshot.data.values.first;
                         // Build the widget with data.
                         return StockPriceCard(
-                          stockTicker: "AAPL",
-                          companyName: "Apple Corporation",
+                          stockTicker: widget.ticker,
+                          companyName: widget.companyName,
                           price: "${price.substring(0, price.length - 2)}",
                         );
                       } else {
