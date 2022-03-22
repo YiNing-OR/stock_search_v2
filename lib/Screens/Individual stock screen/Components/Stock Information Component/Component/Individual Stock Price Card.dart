@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
+
 class StockPriceCard extends StatefulWidget {
   final String stockTicker;
   final String companyName;
   final String price;
 
-  const StockPriceCard({Key key, this.stockTicker, this.companyName, this.price}) : super(key: key);
+  const StockPriceCard({Key key, this.stockTicker, this.companyName,this.price}) : super(key: key);
   @override
   State<StockPriceCard> createState() => StockPriceCardState();
 }

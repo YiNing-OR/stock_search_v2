@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Component/Date%20Control.dart';
-import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Component/Line%20Graph%20Model.dart';
+import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Component/Graphs/Line%20Graph%20Model.dart';
 
 
 class SentimentGraph extends StatefulWidget {

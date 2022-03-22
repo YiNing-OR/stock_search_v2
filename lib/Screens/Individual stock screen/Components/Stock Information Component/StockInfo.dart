@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Component/News%20Component.dart';
-import 'Component/Individual Stock Info Card.dart';
+import 'Component/Individual Stock Price Card.dart';
 import 'Component/Individual Stock Score Card.dart';
-import 'Component/Price Graph.dart';
-import 'Component/Sentiment Graph.dart';
+import 'Component/Graphs/Price Graph.dart';
+import 'Component/Graphs/Sentiment Graph.dart';
+import 'Data/obtainData.dart';
 
-class StockInfo extends StatefulWidget {
+class StockInformation extends StatefulWidget {
   @override
-  State<StockInfo> createState() => StockInfoState();
+  State<StockInformation> createState() => StockInformationState();
 }
 
-class StockInfoState extends State<StockInfo> {
+class StockInformationState extends State<StockInformation> {
   List<bool> isSelected = [true,false,false,false];
-
   String extractDuration(List isSelected){
     int correct_index;
     for (int index = 0; index< isSelected.length; index++){
@@ -40,10 +40,11 @@ class StockInfoState extends State<StockInfo> {
       }
       break;
     }
+    return" ";
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Column(
       children: [
         ToggleButtons(
@@ -85,10 +86,21 @@ class StockInfoState extends State<StockInfo> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                StockPriceCard(
-                  stockTicker: "AAPL",
-                  companyName: "Apple Corporation",
-                  price: "149.00",
+                FutureBuilder(
+                    future: getHttprequest("AAPL"),
+                    builder: (context,snapshot){
+                      if (snapshot.hasData) {
+                        // Build the widget with data.
+                        return StockPriceCard(
+                          stockTicker: "AAPL",
+                          companyName: "Apple Corporation",
+                          price: "${snapshot.data.substring(0, snapshot.data.length - 2)}",
+                        );
+                      } else {
+                        // We can show the loading view until the data comes back.
+                        return CircularProgressIndicator();
+                      }
+                    }
                 ),
                 SizedBox(height: 30,),
                 StockScoreCard(
