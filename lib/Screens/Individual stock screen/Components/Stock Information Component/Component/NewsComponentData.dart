@@ -16,7 +16,7 @@ class ArticleCardState extends State<ArticleCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.55,
+      width: MediaQuery.of(context).size.width * 0.75,
       height: 200,
       decoration: BoxDecoration(
         color: Colors.white,

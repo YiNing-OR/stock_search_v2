@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Components/Stock Information Component/Component/News Component.dart';
 import 'Components/Stock Information Component/Component/Search Component.dart';
 import 'Components/Stock Information Component/StockInfo.dart';
 
@@ -23,6 +24,8 @@ class IndividualStockScreen extends StatelessWidget {
           //     child: StockInformation(),
           // ),
           StockInformation(),
+            SizedBox(height:20),
+            NewsComponent(),
           ],
       ),
     );

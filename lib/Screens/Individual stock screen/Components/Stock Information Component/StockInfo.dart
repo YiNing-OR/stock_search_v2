@@ -137,9 +137,9 @@ class StockInformationState extends State<StockInformation> {
           ],
         ),
         SizedBox(height:10),
-        Container(
-            height: 250,
-            child: NewsComponent())
+        // Container(
+        //     height: 250,
+        //     child: NewsComponent())
 
 
       ],

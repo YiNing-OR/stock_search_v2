@@ -9,14 +9,12 @@ class NewsComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Column(
-
-
-        crossAxisAlignment: CrossAxisAlignment.start,
+    // return SingleChildScrollView(
+    //   scrollDirection: Axis.vertical,
+    //   child:
+    return Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-
           ArticleCard(
             articleTitle:'Apple Hits an All Time Low',
             articleDate:'14-March-2022',
@@ -56,7 +54,7 @@ class NewsComponent extends StatelessWidget {
           SizedBox(   //Use of SizedBox
             height: 30,),
         ],
-      ),
+     // ),
     );
 
   }
