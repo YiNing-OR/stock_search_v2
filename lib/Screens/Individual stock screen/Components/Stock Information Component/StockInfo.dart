@@ -50,7 +50,7 @@ class StockInformationState extends State<StockInformation> {
   @override
   Widget build(BuildContext context){
     print("hello");
-    pullData(widget.ticker);
+    //pullData(widget.ticker);
     return Column(
       children: [
         ToggleButtons(

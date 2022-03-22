@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:http/http.dart' as http;
 import '../../../Individial Stock Screen.dart';
+import '../Data/obtainData.dart';
 import '../Models/SearchSymbolModel.dart';
 
 
@@ -69,6 +70,7 @@ class SearchComponentState extends State<SearchComponent> {
                   );
                 },
                 onSuggestionSelected: (BestMatch suggestion) {
+                  pullData(suggestion.the1Symbol);
                   Navigator.push(
                       context,
                       MaterialPageRoute(

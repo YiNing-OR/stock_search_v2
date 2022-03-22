@@ -39,5 +39,5 @@ Future<void> pullData(String ticker) async{
 }
 
 Future<Map> fetchStockData(){
-  return Future.delayed(const Duration(seconds: 2), () => stockData_map);
+  return Future.delayed(const Duration(seconds: 1), () => stockData_map);
 }

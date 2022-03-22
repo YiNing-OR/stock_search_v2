@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Individual stock screen/Components/Stock Information Component/Component/Search Component.dart';
+import 'Individual stock screen/Components/Stock Information Component/Data/obtainData.dart';
 import 'Individual stock screen/Individial Stock Screen.dart';
 
 class HomeScreenUI extends StatefulWidget {
@@ -82,6 +83,7 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
               foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
             ),
             onPressed: () {
+              pullData("AAPL");
               Navigator.push(
                   context,
                   MaterialPageRoute(
