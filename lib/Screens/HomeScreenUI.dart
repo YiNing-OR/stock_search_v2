@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Article Search Screen /News Screen.dart';
 import 'Individual stock screen/Components/Stock Information Component/Component/Search Component.dart';
 import 'Individual stock screen/Components/Stock Information Component/Data/obtainData.dart';
 import 'Individual stock screen/Individial Stock Screen.dart';
@@ -84,15 +85,27 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
             ),
             onPressed: () {
               pullData("AAPL");
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => IndividualStockScreen(
-                        ticker: "AAPL",
-                        companyName: "Apple Inc",
-                      )));
+              if (dropdownValue == "Stocks") {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            IndividualStockScreen(ticker: "AAPL",
+                              companyName: "Apple Inc",)));
+              }
+
+              else if (dropdownValue == "News") {
+                //if(dropdownValue=="News")
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            NewsInformationScreen( //ticker: "AAPL",companyName: "Apple Inc",
+                            )));
+              }
+
             },
-            child: Text('Placeholder button: press for next page'),
+            child: Text('Search'),
           ),
         ],
       ),

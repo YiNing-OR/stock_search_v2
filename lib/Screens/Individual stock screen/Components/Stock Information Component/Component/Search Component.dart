@@ -31,9 +31,10 @@ class SearchComponentState extends State<SearchComponent> {
             ),
             SizedBox(width: 30,),
             Container(
-              width: MediaQuery.of(context).size.width * 0.9,
+              width: MediaQuery.of(context).size.width * 0.95,
+                padding: EdgeInsets.symmetric(horizontal: 30),
 
-              child: TypeAheadField(
+                child: TypeAheadField(
                 debounceDuration: Duration(milliseconds: 500),
                 textFieldConfiguration: TextFieldConfiguration(
                     autofocus: true,
