@@ -5,24 +5,35 @@ import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Comp
 import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Component/Individual%20Stock%20Score%20Card.dart';
 import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Data/obtainData.dart';
 
-class NewsInformationScreen extends StatefulWidget {
-  @override
-  State<NewsInformationScreen> createState() => NewsInformationState();
-}
+import 'Components/Component/News Information Component/Component/NewsSearchComponent.dart';
+import 'Components/Component/News Information Component/NewsInfoDay.dart';
 
-class NewsInformationState extends State<NewsInformationScreen> {
+class NewsInformationScreen extends StatelessWidget {
+  final String ticker;
+  final String companyName;
+  const NewsInformationScreen({Key key, this.ticker,this.companyName}) : super(key: key);
 
   @override
   Widget build(BuildContext context){
 
-    return Column(
+    return Scaffold(
+      body: ListView(
+        shrinkWrap: true,
+        physics: ClampingScrollPhysics(),
+          children: <Widget>[
+        NewsSearchComponent(),
+        SizedBox(height:20),
+        NewsStockInformation(
+          // ticker: this.ticker,
+          // companyName: this.companyName,
+        ),
+        SizedBox(height:50),
 
-        // Container(
-        //     height: 250,
-        //     child: NewsComponent())
+
+          ],
 
 
-
+      ),
     );
 
   }

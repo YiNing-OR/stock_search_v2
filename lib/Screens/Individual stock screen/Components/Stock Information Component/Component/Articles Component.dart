@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'NewsComponentData.dart';
+import 'Articles Component Card.dart';
 
 class NewsComponent extends StatelessWidget {
   NewsComponent({

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Components/Stock Information Component/Component/News Component.dart';
+import 'Components/Stock Information Component/Component/Articles Component.dart';
 import 'Components/Stock Information Component/Component/Search Component.dart';
 import 'Components/Stock Information Component/StockInfo.dart';
 

@@ -100,7 +100,8 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            NewsInformationScreen( //ticker: "AAPL",companyName: "Apple Inc",
+                            NewsInformationScreen( ticker: "AAPL",
+                            companyName: "Apple Inc"
                             )));
               }
 
