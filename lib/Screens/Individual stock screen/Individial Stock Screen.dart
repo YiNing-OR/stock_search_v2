@@ -16,25 +16,19 @@ class IndividualStockScreen extends StatelessWidget {
           shrinkWrap: true,
           physics: ClampingScrollPhysics(),
           children: <Widget>[
+            SizedBox(height: MediaQuery.of(context).size.width * 0.05),
 
-          SearchComponentStocks(
-            width: MediaQuery.of(context).size.width * 0.95,
-          ),
-          SizedBox(height:20),
-          // SingleChildScrollView(
-          //   scrollDirection: Axis.vertical,
-          //   child: StockInformation(),
-          //   SingleChildScrollView(
-          //     scrollDirection: Axis.vertical,
-          //     child: StockInformation(),
-          // ),
-          StockInformation(
-            ticker: this.ticker,
-            companyName: this.companyName,
-          ),
+            SearchComponentStocks(
+              width: MediaQuery.of(context).size.width * 0.95,
+            ),
             SizedBox(height:20),
-            ArticlesComponent(),
-          ],
+            StockInformation(
+              ticker: this.ticker,
+              companyName: this.companyName,
+            ),
+              SizedBox(height:20),
+              ArticlesComponent(),
+            ],
       ),
     );
   }

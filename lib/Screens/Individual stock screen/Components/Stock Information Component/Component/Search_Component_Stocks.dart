@@ -15,12 +15,12 @@ class SearchComponentStocks extends StatefulWidget {
 }
 
 class SearchComponentStocksState extends State<SearchComponentStocks> {
-
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: MediaQuery.of(context).size.width * 0.05),
+        //SizedBox(height: MediaQuery.of(context).size.width * 0.05),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,15 +37,13 @@ class SearchComponentStocksState extends State<SearchComponentStocks> {
             //MediaQuery.of(context).size.width * 0.95,
             Container(
               width: widget.width,
-                padding: EdgeInsets.symmetric(horizontal: 30),
 
                 child: TypeAheadField(
                 debounceDuration: Duration(milliseconds: 500),
+                hideOnEmpty: true,
                 textFieldConfiguration: TextFieldConfiguration(
                     autofocus: true,
-                    style: DefaultTextStyle.of(context).style.copyWith(
-                        fontStyle: FontStyle.italic
-                    ),
+                    controller: controller,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: "Search a Stock",
@@ -77,6 +75,7 @@ class SearchComponentStocksState extends State<SearchComponentStocks> {
                 },
                 onSuggestionSelected: (BestMatch suggestion) {
                   pullData(suggestion.the1Symbol);
+                  controller.clear();
                   Navigator.push(
                       context,
                       MaterialPageRoute(
