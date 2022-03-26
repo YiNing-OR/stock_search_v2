@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'Article Search Screen /News Screen.dart';
 import 'Individual stock screen/Components/Stock Information Component/Component/Search Component.dart';
 import 'Individual stock screen/Components/Stock Information Component/Data/obtainData.dart';
+import 'Individual stock screen/Components/Stock Information Component/Models/QueryModel.dart';
 import 'Individual stock screen/Individial Stock Screen.dart';
 
 class HomeScreenUI extends StatefulWidget {
@@ -13,6 +14,11 @@ class HomeScreenUI extends StatefulWidget {
 
 class _HomeScreenUIState extends State<HomeScreenUI> {
   String dropdownValue = 'Stocks';
+  String flask_url = 'http://127.0.0.1:5003';
+  TextEditingController controller = TextEditingController();
+  String queryInText ="";
+
+
   //
   // var items = [
   //   'Stocks',
@@ -39,6 +45,7 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
             Container(
               width: MediaQuery.of(context).size.width * 0.8,
               child: TextField(
+                controller: controller,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Search a Stock or News",
@@ -108,6 +115,25 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
             },
             child: Text('Search'),
           ),
+          TextButton(
+              onPressed: ()  async{
+                var result = await postAndFetchQuery(controller.text);
+                var queryData = queryModelFromJson(result);
+                queryInText = queryData.values.first.title.toString().substring(3,queryData.values.first.title.toString().length-3);
+
+                setState(() {
+                  print(result);
+                });
+              },
+              child: Text(
+                'Fetch data from flask',
+                style: TextStyle(fontSize: 20),
+              )),
+          SizedBox(height: 40,),
+          Text("Title of First Article: ",style: TextStyle(fontSize: 20)),
+          SizedBox(height:10),
+          Text(queryInText,style: TextStyle(fontSize: 20)),
+
         ],
       ),
     );

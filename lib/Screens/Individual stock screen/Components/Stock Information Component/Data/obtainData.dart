@@ -39,5 +39,23 @@ Future<void> pullData(String ticker) async{
 }
 
 Future<Map> fetchStockData(){
-  return Future.delayed(const Duration(seconds: 3), () => stockData_map);
+      return Future.delayed(const Duration(seconds:3), () => stockData_map);
+}
+
+
+postAndFetchQuery(String title) async{
+  var response= await http.post(
+      Uri.parse('http://127.0.0.1:5003'),
+      body: {
+        "title" : title
+      }
+  )  ;
+  if (response.statusCode == 200) {
+    //print(response.body);
+    return response.body;
+  };
+
+
+  return Null;
+
 }
