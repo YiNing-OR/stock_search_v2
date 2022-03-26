@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Components/Component/News Information Component/Component/Articles Component News Component.dart';
+import 'Components/Component/News Information Component/Component/Articles News Component.dart';
 import 'Components/Component/News Information Component/Component/NewsSearchComponent.dart';
 import 'Components/Component/News Information Component/Component/NewsInfoDay.dart';
 

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'Article Search Screen /Components/Component/News Information Component/Data/obtain_news_data.dart';
 import 'Article Search Screen /News Screen.dart';
@@ -157,7 +159,11 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
               onPressed: ()  async{
                 var result = await postAndFetchQuery(controller.text);
                 var queryData = queryModelFromJson(result);
-                queryInText = queryData.values.elementAt(1).keyPoints.toString().substring(3,queryData.values.elementAt(1).keyPoints.toString().length-3);
+                 var x = queryData.values.elementAt(1).stocksMentioned.toList().first.substring(1,queryData.values.elementAt(1).stocksMentioned.toList().first.length-1).split(",");
+                 print(x.runtimeType);
+                 print(x);
+
+                queryInText = queryData.values.elementAt(1).stocksMentioned.first;
                 setState(() {
                   print(result);
                 });

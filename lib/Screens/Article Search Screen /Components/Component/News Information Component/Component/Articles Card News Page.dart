@@ -1,16 +1,18 @@
 import 'package:condition/condition.dart';
 import 'package:flutter/material.dart';
+import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Data/obtainData.dart';
+import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Individial%20Stock%20Screen.dart';
 
 class ArticleCardNews extends StatefulWidget {
   final String articleTitle;
   final String articleDate;
   final String articleSummary;
   final String articleLink;
-  final String ticker;
+  final List <String> ticker_list;
   final double sentimentscore;
 
 
-  const ArticleCardNews({Key key, this.articleTitle, this.articleDate, this.articleSummary,this.articleLink,this.ticker,this.sentimentscore}) : super(key: key);
+  const ArticleCardNews({Key key, this.articleTitle, this.articleDate, this.articleSummary,this.articleLink,this.ticker_list,this.sentimentscore}) : super(key: key);
   @override
   State<ArticleCardNews> createState() => ArticleCardNewsState();
 }
@@ -19,27 +21,54 @@ class ArticleCardNewsState extends State<ArticleCardNews> {
   // var articleData=ArticleData.getData();
   @override
   Widget build(BuildContext context) {
+    print("testing123");
+    print(widget.ticker_list.length);
     return Container(
       width: MediaQuery.of(context).size.width * 0.75,
       child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        ButtonBar(
-                          children: [
-                          ElevatedButton(
-                            child: Text(widget.ticker),
-                            onPressed: (){},
-                          ),
-                          ElevatedButton(
-                            child: Text(widget.ticker),
-                            onPressed: (){},
-                          ),
-                        ],
-                      )],
+                    Container(
+                      alignment: Alignment.centerRight,
+                      height: 50,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          itemCount: widget.ticker_list.length,
+                          itemBuilder: (BuildContext context,int index){
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                ButtonBar(
+                                  children: [
+                                    ElevatedButton(
+                                      child: Text(widget.ticker_list.elementAt(index).replaceAll("\'", "")),
+                                      onPressed: (){
+                                        pullData(widget.ticker_list.elementAt(index).replaceAll("\'", ""));
+
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => IndividualStockScreen(
+                                                  ticker: widget.ticker_list.elementAt(index).replaceAll("\'", ""),
+                                                  companyName: "",
+
+                                                )
+                                            )
+                                        );
+                                      },
+                                    ),
+
+                                  ],
+                                )],
+                            );
+
+                          }
+                      ),
                     ),
+
+
                   Container(
+                    padding: const EdgeInsets.all(8.0),
                     width: MediaQuery.of(context).size.width * 0.75,
                     height: 200,
                     decoration: BoxDecoration(
@@ -58,23 +87,28 @@ class ArticleCardNewsState extends State<ArticleCardNews> {
                               children: [
                                 Expanded(
                                     child:Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.all(4.0),
                                       child: Text(widget.articleTitle,
+                                        overflow: TextOverflow.ellipsis,
                                         style: TextStyle(fontSize: 30),),
                                     )),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(widget.articleDate,
+                                    overflow: TextOverflow.ellipsis,
                                     style: TextStyle(fontSize: 15),),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(widget.articleSummary,
+                                    maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,
                                     style: TextStyle(fontSize: 15),),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(widget.articleLink,
+                                    overflow: TextOverflow.ellipsis,
                                     style: TextStyle(fontSize: 15),),
                                 ),
 
@@ -82,7 +116,7 @@ class ArticleCardNewsState extends State<ArticleCardNews> {
                             ),
                           ),
                           Positioned(
-                            right:50,
+                            right:10,
                             bottom:30,
                             child: Container(
                               width: 120,

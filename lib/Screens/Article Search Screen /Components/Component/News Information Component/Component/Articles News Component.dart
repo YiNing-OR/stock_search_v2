@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:ir_search_engine_stocks/Screens/Article%20Search%20Screen%20/Components/Component/News%20Information%20Component/Data/obtain_news_data.dart';
 import 'Articles Card News Page.dart';
@@ -23,14 +25,15 @@ class ArticlesNewsPageState extends State<ArticlesNewsComponent> {
           shrinkWrap: true,
           itemBuilder: (context, index) {
            var queryText = queryData.values.elementAt(index);
+
             return Column(
               children: <Widget>[
               ArticleCardNews(
                     articleTitle: queryText.title.toString().substring(1,queryText.title.toString().length-1),
                     articleDate: queryText.datePublished.toString().substring(1,queryText.datePublished.toString().length-1),
-                    articleSummary: queryText.keyPoints.toString().substring(1,queryText.keyPoints.toString().length-1),
-                    articleLink:'www.abcdef.com',
-                    ticker:widget.ticker,
+                    articleSummary: queryText.extract_summarizer.toString().substring(3,queryText.extract_summarizer.toString().length-1),
+                    articleLink: queryText.url.toString().substring(3,queryText.url.toString().length-1),
+                    ticker_list: queryText.stocksMentioned.toList().first.substring(1,queryText.stocksMentioned.toList().first.length-1).split(","),
                     sentimentscore:100,
                   ),
               SizedBox(height: 30,)
