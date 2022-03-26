@@ -32,7 +32,9 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
             //fit: BoxFit.cover,
           ),
           SizedBox(width: 5, height: 60),
-          Row(children: [
+          Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
             SizedBox(
               width: 50,
             ),
@@ -41,7 +43,8 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
               child: dropdownValue == "Stocks"?
               SearchComponentStocks(
                 width: MediaQuery.of(context).size.width * 0.8,
-              ):
+              )
+                  :
               TextField(
                 controller: controller,
                 decoration: InputDecoration(
@@ -80,7 +83,8 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                 }).toList(),
               ),
             ),
-          ]),
+          ]
+          ),
           SizedBox(
             height: 100,
           ),

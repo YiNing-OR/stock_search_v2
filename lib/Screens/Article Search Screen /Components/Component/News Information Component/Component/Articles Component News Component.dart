@@ -31,6 +31,7 @@ class ArticlesNewsPageState extends State<ArticlesNewsComponent> {
                     articleSummary: queryText.keyPoints.toString().substring(1,queryText.keyPoints.toString().length-1),
                     articleLink:'www.abcdef.com',
                     ticker:widget.ticker,
+                    sentimentscore:100,
                   ),
               SizedBox(height: 30,)
               ],

@@ -1,3 +1,4 @@
+import 'package:condition/condition.dart';
 import 'package:flutter/material.dart';
 
 class ArticleCard extends StatefulWidget {
@@ -5,8 +6,9 @@ class ArticleCard extends StatefulWidget {
   final String articleDate;
   final String articleSummary;
   final String articleLink;
+  final double sentimentscore;
 
-  const ArticleCard({Key key, this.articleTitle, this.articleDate, this.articleSummary,this.articleLink}) : super(key: key);
+  const ArticleCard({Key key, this.articleTitle, this.articleDate, this.articleSummary,this.articleLink,this.sentimentscore}) : super(key: key);
   @override
   State<ArticleCard> createState() => ArticleCardState();
 }
@@ -27,8 +29,8 @@ class ArticleCardState extends State<ArticleCard> {
 
         ],
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      child: Stack(
+        //mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           Expanded(
             child: Column(
@@ -58,6 +60,32 @@ class ArticleCardState extends State<ArticleCard> {
 
               ],
             ),
+          ),
+        Positioned(
+          right:50,
+          bottom:30,
+          child: Container(
+            width: 120,
+            height: 40,
+            decoration: BoxDecoration(
+              //color: Color(0xFFCFD2D5),
+              border: Border.all(color: Colors.grey, width: 1),
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+            ),
+            child:
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [Conditioned.boolean( widget.sentimentscore>=-100&&widget.sentimentscore<=0,
+                trueBuilder: () => Text(
+                  'B E A R',
+                  style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold,fontFamily:"Georgia"),
+                ),
+                falseBuilder: () => Text(
+                  'B U L L',
+                  style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontFamily:"Georgia"),
+                ),
+              ),],),),
+
           ),
 
         ],

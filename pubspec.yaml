@@ -26,6 +26,7 @@ dependencies:
   syncfusion_flutter_charts: ^19.4.55
   http: ^0.13.4
   flutter_typeahead: ^3.2.4
+  condition: ^0.0.8
 
 
 

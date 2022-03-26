@@ -1,3 +1,4 @@
+import 'package:condition/condition.dart';
 import 'package:flutter/material.dart';
 
 class ArticleCardNews extends StatefulWidget {
@@ -6,9 +7,10 @@ class ArticleCardNews extends StatefulWidget {
   final String articleSummary;
   final String articleLink;
   final String ticker;
+  final double sentimentscore;
 
 
-  const ArticleCardNews({Key key, this.articleTitle, this.articleDate, this.articleSummary,this.articleLink,this.ticker}) : super(key: key);
+  const ArticleCardNews({Key key, this.articleTitle, this.articleDate, this.articleSummary,this.articleLink,this.ticker,this.sentimentscore}) : super(key: key);
   @override
   State<ArticleCardNews> createState() => ArticleCardNewsState();
 }
@@ -78,6 +80,32 @@ class ArticleCardNewsState extends State<ArticleCardNews> {
 
                               ],
                             ),
+                          ),
+                          Positioned(
+                            right:50,
+                            bottom:30,
+                            child: Container(
+                              width: 120,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                //color: Color(0xFFCFD2D5),
+                                border: Border.all(color: Colors.grey, width: 1),
+                                borderRadius: BorderRadius.all(Radius.circular(5)),
+                              ),
+                              child:
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [Conditioned.boolean( widget.sentimentscore>=-100&&widget.sentimentscore<=0,
+                                  trueBuilder: () => Text(
+                                    'B E A R',
+                                    style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold,fontFamily:"Georgia"),
+                                  ),
+                                  falseBuilder: () => Text(
+                                    'B U L L',
+                                    style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontFamily:"Georgia"),
+                                  ),
+                                ),],),),
+
                           ),
 
                         ],

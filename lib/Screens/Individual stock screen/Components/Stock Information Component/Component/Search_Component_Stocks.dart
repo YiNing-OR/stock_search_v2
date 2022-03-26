@@ -20,7 +20,7 @@ class SearchComponentStocksState extends State<SearchComponentStocks> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: MediaQuery.of(context).size.width * 0.05),
+        // SizedBox(height: MediaQuery.of(context).size.width * 0.05),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,

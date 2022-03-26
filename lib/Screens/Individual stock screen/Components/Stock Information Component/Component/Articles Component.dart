@@ -24,6 +24,7 @@ class _ArticlesComponentState extends State<ArticlesComponent> {
             articleDate:'14-March-2022',
             articleSummary:"Apple's recent move in Russia led to them hitting a 52 week Low.",
             articleLink:'www.abcdef.com',
+            sentimentscore:-100,
           ),
           SizedBox(   //Use of SizedBox
             height: 30,
@@ -34,6 +35,8 @@ class _ArticlesComponentState extends State<ArticlesComponent> {
             articleDate:'sss',
             articleSummary:'ddd',
             articleLink:'www.abcdef.com',
+            sentimentscore:100,
+
           ),
           SizedBox(   //Use of SizedBox
             height: 30,
@@ -43,6 +46,8 @@ class _ArticlesComponentState extends State<ArticlesComponent> {
             articleDate:'eee',
             articleSummary:'ssss',
             articleLink:'www.abcdef.com',
+            sentimentscore:50,
+
 
           ),
           SizedBox(   //Use of SizedBox
@@ -54,6 +59,8 @@ class _ArticlesComponentState extends State<ArticlesComponent> {
             articleDate:'OOOeereOOO',
             articleSummary:'kjdeeeefkjkj',
             articleLink:'www.abcdef.com',
+            sentimentscore:0,
+
           ),
           SizedBox(   //Use of SizedBox
             height: 30,),
