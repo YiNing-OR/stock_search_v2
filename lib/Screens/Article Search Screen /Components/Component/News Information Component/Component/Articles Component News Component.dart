@@ -26,9 +26,9 @@ class ArticlesNewsPageState extends State<ArticlesNewsComponent> {
             return Column(
               children: <Widget>[
               ArticleCardNews(
-                    articleTitle: queryText.title.toString().substring(3,queryText.title.toString().length-3),
+                    articleTitle: queryText.title.toString().substring(1,queryText.title.toString().length-1),
                     articleDate: queryText.datePublished.toString().substring(1,queryText.datePublished.toString().length-1),
-                    articleSummary: queryText.keyPoints.toString().substring(2,queryText.keyPoints.toString().length-2),
+                    articleSummary: queryText.keyPoints.toString().substring(1,queryText.keyPoints.toString().length-1),
                     articleLink:'www.abcdef.com',
                     ticker:widget.ticker,
                   ),

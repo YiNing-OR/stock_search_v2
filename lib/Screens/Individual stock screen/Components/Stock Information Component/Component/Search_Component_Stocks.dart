@@ -6,12 +6,15 @@ import '../Data/obtainData.dart';
 import '../Models/SearchSymbolModel.dart';
 
 
-class SearchComponent extends StatefulWidget {
+class SearchComponentStocks extends StatefulWidget {
+  final width;
+  const SearchComponentStocks({Key key, this.width}) : super(key: key);
+
   @override
-  State<SearchComponent> createState() => SearchComponentState();
+  State<SearchComponentStocks> createState() => SearchComponentStocksState();
 }
 
-class SearchComponentState extends State<SearchComponent> {
+class SearchComponentStocksState extends State<SearchComponentStocks> {
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +25,18 @@ class SearchComponentState extends State<SearchComponent> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Expanded(
-              child: Container(
-                child: IconButton(
-                    icon: Icon(Icons.refresh,size: 35,)
-                ),
-              ),
-            ),
-            SizedBox(width: 30,),
+            // Expanded(
+            //   child: Container(
+            //     child: IconButton(
+            //         icon: Icon(Icons.refresh,size: 35,)
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(width: 30,),
+
+            //MediaQuery.of(context).size.width * 0.95,
             Container(
-              width: MediaQuery.of(context).size.width * 0.95,
+              width: widget.width,
                 padding: EdgeInsets.symmetric(horizontal: 30),
 
                 child: TypeAheadField(

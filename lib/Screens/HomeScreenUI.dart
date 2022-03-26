@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Article Search Screen /Components/Component/News Information Component/Data/obtain_news_data.dart';
 import 'Article Search Screen /News Screen.dart';
-import 'Individual stock screen/Components/Stock Information Component/Component/Search Component.dart';
+import 'Individual stock screen/Components/Stock Information Component/Component/Search_Component_Stocks.dart';
 import 'Individual stock screen/Components/Stock Information Component/Data/obtainData.dart';
 import 'Individual stock screen/Components/Stock Information Component/Models/QueryModel.dart';
 import 'Individual stock screen/Individial Stock Screen.dart';
@@ -38,11 +38,15 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
             ),
             Container(
               width: MediaQuery.of(context).size.width * 0.8,
-              child: TextField(
+              child: dropdownValue == "Stocks"?
+              SearchComponentStocks(
+                width: MediaQuery.of(context).size.width * 0.8,
+              ):
+              TextField(
                 controller: controller,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: "Search a Stock or News",
+                  labelText: "Search a News",
                   prefixIcon: Icon(Icons.search),
                 ),
               ),
@@ -80,37 +84,71 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
           SizedBox(
             height: 100,
           ),
-          TextButton(
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+          Container(
+            child:TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              ),
+              onPressed: () async {
+                pullData("DND.TRT");
+                if (dropdownValue == "Stocks") {
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) =>
+                  //             IndividualStockScreen(ticker: "DND.TRT",
+                  //               companyName: "Apple Inc",)));
+                }
+
+                else if (dropdownValue == "News") {
+                  //if(dropdownValue=="News")
+                  var result = await postAndFetchQuery(controller.text);
+                  queryData = queryModelFromJson(result);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              NewsInformationScreen( ticker: "AAPL",
+                                  companyName: "Apple Inc"
+                              )));
+                }
+
+              },
+              child: Text('Search'),
             ),
-            onPressed: () async {
-              pullData("AAPL");
-              if (dropdownValue == "Stocks") {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            IndividualStockScreen(ticker: "AAPL",
-                              companyName: "Apple Inc",)));
-              }
-
-              else if (dropdownValue == "News") {
-                //if(dropdownValue=="News")
-                var result = await postAndFetchQuery(controller.text);
-                queryData = queryModelFromJson(result);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            NewsInformationScreen( ticker: "AAPL",
-                            companyName: "Apple Inc"
-                            )));
-              }
-
-            },
-            child: Text('Search'),
-          ),
+          )
+          ,
+          // TextButton(
+          //   style: ButtonStyle(
+          //     foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+          //   ),
+          //   onPressed: () async {
+          //     pullData("DND.TRT");
+          //     if (dropdownValue == "Stocks") {
+          //       Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //               builder: (context) =>
+          //                   IndividualStockScreen(ticker: "DND.TRT",
+          //                     companyName: "Apple Inc",)));
+          //     }
+          //
+          //     else if (dropdownValue == "News") {
+          //       //if(dropdownValue=="News")
+          //       var result = await postAndFetchQuery(controller.text);
+          //       queryData = queryModelFromJson(result);
+          //       Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //               builder: (context) =>
+          //                   NewsInformationScreen( ticker: "AAPL",
+          //                   companyName: "Apple Inc"
+          //                   )));
+          //     }
+          //
+          //   },
+          //   child: Text('Search'),
+          // ),
           TextButton(
               onPressed: ()  async{
                 var result = await postAndFetchQuery(controller.text);

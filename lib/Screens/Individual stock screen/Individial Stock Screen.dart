@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Components/Stock Information Component/Component/Articles Component.dart';
-import 'Components/Stock Information Component/Component/Search Component.dart';
+import 'Components/Stock Information Component/Component/Search_Component_Stocks.dart';
 import 'Components/Stock Information Component/StockInfo.dart';
 
 
@@ -17,7 +17,9 @@ class IndividualStockScreen extends StatelessWidget {
           physics: ClampingScrollPhysics(),
           children: <Widget>[
 
-          SearchComponent(),
+          SearchComponentStocks(
+            width: MediaQuery.of(context).size.width * 0.95,
+          ),
           SizedBox(height:20),
           // SingleChildScrollView(
           //   scrollDirection: Axis.vertical,
