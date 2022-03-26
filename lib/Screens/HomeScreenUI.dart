@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Article Search Screen /Components/Component/News Information Component/Data/obtain_news_data.dart';
 import 'Article Search Screen /News Screen.dart';
 import 'Individual stock screen/Components/Stock Information Component/Component/Search Component.dart';
 import 'Individual stock screen/Components/Stock Information Component/Data/obtainData.dart';
@@ -17,13 +18,6 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
   String flask_url = 'http://127.0.0.1:5003';
   TextEditingController controller = TextEditingController();
   String queryInText ="";
-
-
-  //
-  // var items = [
-  //   'Stocks',
-  //   'News',
-  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +84,7 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
             ),
-            onPressed: () {
+            onPressed: () async {
               pullData("AAPL");
               if (dropdownValue == "Stocks") {
                 Navigator.push(
@@ -103,6 +97,8 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
 
               else if (dropdownValue == "News") {
                 //if(dropdownValue=="News")
+                var result = await postAndFetchQuery(controller.text);
+                queryData = queryModelFromJson(result);
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -119,8 +115,7 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
               onPressed: ()  async{
                 var result = await postAndFetchQuery(controller.text);
                 var queryData = queryModelFromJson(result);
-                queryInText = queryData.values.first.title.toString().substring(3,queryData.values.first.title.toString().length-3);
-
+                queryInText = queryData.values.elementAt(1).keyPoints.toString().substring(3,queryData.values.elementAt(1).keyPoints.toString().length-3);
                 setState(() {
                   print(result);
                 });

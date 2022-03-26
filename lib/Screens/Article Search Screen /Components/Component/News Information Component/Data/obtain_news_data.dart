@@ -1,3 +1,5 @@
+var queryData;
+
 class TickersMockData{
   static final getData =[
     {

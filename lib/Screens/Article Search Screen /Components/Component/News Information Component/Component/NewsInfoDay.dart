@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Component/Individual%20Stock%20Price%20Card.dart';
 import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Component/Individual%20Stock%20Score%20Card.dart';
 import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Data/obtainData.dart';
-import 'Data/Relevant Tickers.dart';
+import '../Data/obtain_news_data.dart';
 
 class NewsStockInformation extends StatefulWidget {
   var tickersMockData = TickersMockData.getData;
-  // final String ticker;
-  // final String companyName;
-  // const NewsStockInformation({Key key, this.ticker,this.companyName}) : super(key: key);
+
   @override
   State<NewsStockInformation> createState() => NewsStockInformationState();
 }
@@ -49,8 +47,6 @@ class NewsStockInformationState extends State<NewsStockInformation> {
 
   @override
   Widget build(BuildContext context){
-    print("hello");
-    //pullData(widget.ticker);
     return Column(
       children: [
         ToggleButtons(
@@ -158,66 +154,6 @@ class NewsStockInformationState extends State<NewsStockInformation> {
                           score:"-40"), ], ),
 
                   SizedBox(width:50),
-                  // Column(
-                  //   children: [
-                  //     StockPriceCard(
-                  //       stockTicker: "AAPL",
-                  //       companyName: "Apple Inc",
-                  //       price: "${price.substring(0, price.length - 2)}",
-                  //     ),
-                  //     SizedBox(height:10),
-                  //
-                  //     StockScoreCard(
-                  //         bullOrBear: "Bear",
-                  //         score:"-40"), ], ),
-                  //
-                  // SizedBox(width:50),
-                  //
-                  // Column(
-                  //   children: [
-                  //     StockPriceCard(
-                  //       stockTicker: "AAPL",
-                  //       companyName: "Apple Inc",
-                  //       price: "${price.substring(0, price.length - 2)}",
-                  //     ),
-                  //     SizedBox(height:10),
-                  //
-                  //     StockScoreCard(
-                  //         bullOrBear: "Bear",
-                  //         score:"-40"), ], ),
-                  //
-                  // SizedBox(width:50),
-                  //
-                  // Column(
-                  //   children: [
-                  //     StockPriceCard(
-                  //       stockTicker: "AAPL",
-                  //       companyName: "Apple Inc",
-                  //       price: "${price.substring(0, price.length - 2)}",
-                  //     ),
-                  //     SizedBox(height:10),
-                  //
-                  //     StockScoreCard(
-                  //         bullOrBear: "Bear",
-                  //         score:"-40"), ], ),
-                  //
-                  // SizedBox(width:50),
-                  //
-                  // Column(
-                  //   children: [
-                  //     StockPriceCard(
-                  //       stockTicker: "AAPL",
-                  //       companyName: "Apple Inc",
-                  //       price: "${price.substring(0, price.length - 2)}",
-                  //     ),
-                  //     SizedBox(height:10),
-                  //
-                  //
-                  //     StockScoreCard(
-                  //         bullOrBear: "Bear",
-                  //         score:"-40"), ], ),
-                  //
-                  // SizedBox(width:50),
 
               ],
             ),
@@ -227,11 +163,6 @@ class NewsStockInformationState extends State<NewsStockInformation> {
         // We can show the loading view until the data comes back.
         return CircularProgressIndicator();}}
         ),
-        // SizedBox(height: 30,),
-        // StockScoreCard(
-        // bullOrBear: "Bear",
-        // score:"-40"
-        // )
         ],
         ),
       ],
