@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'Articles Component Card.dart';
 
-class NewsComponent extends StatelessWidget {
-  NewsComponent({
+class ArticlesComponent extends StatefulWidget {
+  ArticlesComponent({
     Key key,
   }) : super(key: key);
 
+  @override
+  State<ArticlesComponent> createState() => _ArticlesComponentState();
+}
 
+class _ArticlesComponentState extends State<ArticlesComponent> {
   @override
   Widget build(BuildContext context) {
     // return SingleChildScrollView(

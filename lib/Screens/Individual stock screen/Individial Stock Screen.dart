@@ -31,7 +31,7 @@ class IndividualStockScreen extends StatelessWidget {
             companyName: this.companyName,
           ),
             SizedBox(height:20),
-            NewsComponent(),
+            ArticlesComponent(),
           ],
       ),
     );

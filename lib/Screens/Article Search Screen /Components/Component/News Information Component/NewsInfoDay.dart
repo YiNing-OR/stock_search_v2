@@ -89,7 +89,7 @@ class NewsStockInformationState extends State<NewsStockInformation> {
         SizedBox(height:15),
 
         Container(
-        height: 500,
+        height: 300,
         width: double.infinity,
         child: ListView(
           children: [
@@ -110,8 +110,10 @@ class NewsStockInformationState extends State<NewsStockInformation> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  SizedBox(width:50),
+                  SizedBox(width:70),
+
                   Column(
+
                     children: [
                       StockPriceCard(
                       stockTicker: "AAPL",
@@ -156,66 +158,66 @@ class NewsStockInformationState extends State<NewsStockInformation> {
                           score:"-40"), ], ),
 
                   SizedBox(width:50),
-                  Column(
-                    children: [
-                      StockPriceCard(
-                        stockTicker: "AAPL",
-                        companyName: "Apple Inc",
-                        price: "${price.substring(0, price.length - 2)}",
-                      ),
-                      SizedBox(height:10),
-
-                      StockScoreCard(
-                          bullOrBear: "Bear",
-                          score:"-40"), ], ),
-
-                  SizedBox(width:50),
-
-                  Column(
-                    children: [
-                      StockPriceCard(
-                        stockTicker: "AAPL",
-                        companyName: "Apple Inc",
-                        price: "${price.substring(0, price.length - 2)}",
-                      ),
-                      SizedBox(height:10),
-
-                      StockScoreCard(
-                          bullOrBear: "Bear",
-                          score:"-40"), ], ),
-
-                  SizedBox(width:50),
-
-                  Column(
-                    children: [
-                      StockPriceCard(
-                        stockTicker: "AAPL",
-                        companyName: "Apple Inc",
-                        price: "${price.substring(0, price.length - 2)}",
-                      ),
-                      SizedBox(height:10),
-
-                      StockScoreCard(
-                          bullOrBear: "Bear",
-                          score:"-40"), ], ),
-
-                  SizedBox(width:50),
-
-                  Column(
-                    children: [
-                      StockPriceCard(
-                        stockTicker: "AAPL",
-                        companyName: "Apple Inc",
-                        price: "${price.substring(0, price.length - 2)}",
-                      ),
-                      SizedBox(height:10),
-
-
-                      StockScoreCard(
-                          bullOrBear: "Bear",
-                          score:"-40"), ], ),
-
-                  SizedBox(width:50),
+                  // Column(
+                  //   children: [
+                  //     StockPriceCard(
+                  //       stockTicker: "AAPL",
+                  //       companyName: "Apple Inc",
+                  //       price: "${price.substring(0, price.length - 2)}",
+                  //     ),
+                  //     SizedBox(height:10),
+                  //
+                  //     StockScoreCard(
+                  //         bullOrBear: "Bear",
+                  //         score:"-40"), ], ),
+                  //
+                  // SizedBox(width:50),
+                  //
+                  // Column(
+                  //   children: [
+                  //     StockPriceCard(
+                  //       stockTicker: "AAPL",
+                  //       companyName: "Apple Inc",
+                  //       price: "${price.substring(0, price.length - 2)}",
+                  //     ),
+                  //     SizedBox(height:10),
+                  //
+                  //     StockScoreCard(
+                  //         bullOrBear: "Bear",
+                  //         score:"-40"), ], ),
+                  //
+                  // SizedBox(width:50),
+                  //
+                  // Column(
+                  //   children: [
+                  //     StockPriceCard(
+                  //       stockTicker: "AAPL",
+                  //       companyName: "Apple Inc",
+                  //       price: "${price.substring(0, price.length - 2)}",
+                  //     ),
+                  //     SizedBox(height:10),
+                  //
+                  //     StockScoreCard(
+                  //         bullOrBear: "Bear",
+                  //         score:"-40"), ], ),
+                  //
+                  // SizedBox(width:50),
+                  //
+                  // Column(
+                  //   children: [
+                  //     StockPriceCard(
+                  //       stockTicker: "AAPL",
+                  //       companyName: "Apple Inc",
+                  //       price: "${price.substring(0, price.length - 2)}",
+                  //     ),
+                  //     SizedBox(height:10),
+                  //
+                  //
+                  //     StockScoreCard(
+                  //         bullOrBear: "Bear",
+                  //         score:"-40"), ], ),
+                  //
+                  // SizedBox(width:50),
 
               ],
             ),
