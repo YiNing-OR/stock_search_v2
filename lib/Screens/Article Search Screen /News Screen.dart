@@ -24,11 +24,6 @@ class NewsInformationScreen extends StatelessWidget {
           ),
         NewsSearchComponent(),
         SizedBox(height:20),
-        NewsStockInformation(
-          // ticker: this.ticker,
-          // companyName: this.companyName,
-        ),
-        SizedBox(height:10),
         ArticlesNewsComponent(queryData:queryData),
 
 
