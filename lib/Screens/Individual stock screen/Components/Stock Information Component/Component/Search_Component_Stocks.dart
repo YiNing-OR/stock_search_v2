@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:http/http.dart' as http;
+import 'package:ir_search_engine_stocks/Screens/Article%20Search%20Screen%20/Components/Component/News%20Information%20Component/Data/obtain_news_data.dart';
+import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Models/QueryModel.dart';
 import '../../../Individial Stock Screen.dart';
 import '../Data/obtainData.dart';
 import '../Models/SearchSymbolModel.dart';
@@ -73,8 +75,12 @@ class SearchComponentStocksState extends State<SearchComponentStocks> {
                     subtitle: Text("Symbol: "+suggestion.the1Symbol),
                   );
                 },
-                onSuggestionSelected: (BestMatch suggestion) {
+                onSuggestionSelected: (BestMatch suggestion) async{
+                  //pull data for stocks
                   pullData(suggestion.the1Symbol);
+                  //pull data for relevant news
+                  var result = await postAndFetchQuery(suggestion.the1Symbol,"ticker");
+                  queryData = queryModelFromJson(result);
                   controller.clear();
                   Navigator.push(
                       context,

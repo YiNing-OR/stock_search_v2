@@ -1,6 +1,8 @@
 import 'package:condition/condition.dart';
 import 'package:flutter/material.dart';
+import 'package:ir_search_engine_stocks/Screens/Article%20Search%20Screen%20/Components/Component/News%20Information%20Component/Data/obtain_news_data.dart';
 import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Data/obtainData.dart';
+import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Models/QueryModel.dart';
 import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Individial%20Stock%20Screen.dart';
 
 class ArticleCardNews extends StatefulWidget {
@@ -9,7 +11,7 @@ class ArticleCardNews extends StatefulWidget {
   final String articleSummary;
   final String articleLink;
   final List <String> ticker_list;
-  final double sentimentscore;
+  final String sentimentscore;
 
 
   const ArticleCardNews({Key key, this.articleTitle, this.articleDate, this.articleSummary,this.articleLink,this.ticker_list,this.sentimentscore}) : super(key: key);
@@ -21,8 +23,6 @@ class ArticleCardNewsState extends State<ArticleCardNews> {
   // var articleData=ArticleData.getData();
   @override
   Widget build(BuildContext context) {
-    print("testing123");
-    print(widget.ticker_list.length);
     return Container(
       width: MediaQuery.of(context).size.width * 0.75,
       child: Column(
@@ -35,21 +35,23 @@ class ArticleCardNewsState extends State<ArticleCardNews> {
                           shrinkWrap: true,
                           itemCount: widget.ticker_list.length,
                           itemBuilder: (BuildContext context,int index){
+                            String ticker =widget.ticker_list.elementAt(index).replaceAll("\'", "");
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 ButtonBar(
                                   children: [
                                     ElevatedButton(
-                                      child: Text(widget.ticker_list.elementAt(index).replaceAll("\'", "")),
-                                      onPressed: (){
-                                        pullData(widget.ticker_list.elementAt(index).replaceAll("\'", ""));
-
+                                      child: Text(ticker),
+                                      onPressed: ()async{
+                                        pullData(ticker);
+                                        var result = await postAndFetchQuery(ticker,"ticker");
+                                        queryData = queryModelFromJson(result);
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) => IndividualStockScreen(
-                                                  ticker: widget.ticker_list.elementAt(index).replaceAll("\'", ""),
+                                                  ticker: ticker,
                                                   companyName: "",
 
                                                 )
@@ -129,7 +131,7 @@ class ArticleCardNewsState extends State<ArticleCardNews> {
                               child:
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [Conditioned.boolean( widget.sentimentscore>=-100&&widget.sentimentscore<=0,
+                                children: [Conditioned.boolean( widget.sentimentscore=="Negative",
                                   trueBuilder: () => Text(
                                     'B E A R',
                                     style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold,fontFamily:"Georgia"),

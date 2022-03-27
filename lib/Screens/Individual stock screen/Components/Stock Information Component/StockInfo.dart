@@ -98,10 +98,14 @@ class StockInformationState extends State<StockInformation> {
                       if (snapshot.hasData) {
                         String price = snapshot.data.values.first;
                         // Build the widget with data.
-                        return StockPriceCard(
-                          stockTicker: widget.ticker,
-                          companyName: widget.companyName,
-                          price: "${price.substring(0, price.length - 2)}",
+                        return Column(
+                          children: [
+                            StockPriceCard(
+                              stockTicker: widget.ticker,
+                              companyName: widget.companyName,
+                              price: "${price.substring(0, price.length - 2)}",
+                            ),
+                          ],
                         );
                       } else {
                         // We can show the loading view until the data comes back.

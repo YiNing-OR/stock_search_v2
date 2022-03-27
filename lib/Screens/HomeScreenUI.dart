@@ -96,7 +96,7 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
               onPressed: () async {
-                pullData("DND.TRT");
+                pullData("AAPL");
                 if (dropdownValue == "Stocks") {
                   // Navigator.push(
                   //     context,
@@ -108,74 +108,47 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
 
                 else if (dropdownValue == "News") {
                   //if(dropdownValue=="News")
-                  var result = await postAndFetchQuery(controller.text);
+                  var result = await postAndFetchQuery(controller.text,"title");
                   queryData = queryModelFromJson(result);
+                  controller.text="";
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              NewsInformationScreen( ticker: "AAPL",
-                                  companyName: "Apple Inc"
-                              )));
+                              NewsInformationScreen()
+                      )
+                  );
                 }
 
               },
-              child: Text('Search'),
+              child: Text('Search',style: TextStyle(fontSize: 20),),
             ),
           )
           ,
-          // TextButton(
-          //   style: ButtonStyle(
-          //     foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-          //   ),
-          //   onPressed: () async {
-          //     pullData("DND.TRT");
-          //     if (dropdownValue == "Stocks") {
-          //       Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) =>
-          //                   IndividualStockScreen(ticker: "DND.TRT",
-          //                     companyName: "Apple Inc",)));
-          //     }
-          //
-          //     else if (dropdownValue == "News") {
-          //       //if(dropdownValue=="News")
-          //       var result = await postAndFetchQuery(controller.text);
-          //       queryData = queryModelFromJson(result);
-          //       Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) =>
-          //                   NewsInformationScreen( ticker: "AAPL",
-          //                   companyName: "Apple Inc"
-          //                   )));
-          //     }
-          //
-          //   },
-          //   child: Text('Search'),
-          // ),
-          TextButton(
-              onPressed: ()  async{
-                var result = await postAndFetchQuery(controller.text);
-                var queryData = queryModelFromJson(result);
-                 var x = queryData.values.elementAt(1).stocksMentioned.toList().first.substring(1,queryData.values.elementAt(1).stocksMentioned.toList().first.length-1).split(",");
-                 print(x.runtimeType);
-                 print(x);
 
-                queryInText = queryData.values.elementAt(1).stocksMentioned.first;
-                setState(() {
-                  print(result);
-                });
-              },
-              child: Text(
-                'Fetch data from flask',
-                style: TextStyle(fontSize: 20),
-              )),
-          SizedBox(height: 40,),
-          Text("Title of First Article: ",style: TextStyle(fontSize: 20)),
-          SizedBox(height:10),
-          Text(queryInText,style: TextStyle(fontSize: 20)),
+          // TextButton(
+          //     onPressed: ()  async{
+          //       var result = await postAndFetchQuery(
+          //         controller.text,"title"
+          //       );
+          //       var queryData = queryModelFromJson(result);
+          //        var x = queryData.values.elementAt(1).stocksMentioned.toList().first.substring(1,queryData.values.elementAt(1).stocksMentioned.toList().first.length-1).split(",");
+          //        print(x.runtimeType);
+          //        print(x);
+          //
+          //       queryInText = queryData.values.elementAt(1).predict_cat.toString();
+          //       setState(() {
+          //         print(result);
+          //       });
+          //     },
+          //     child: Text(
+          //       'Fetch data from flask',
+          //       style: TextStyle(fontSize: 20),
+          //     )),
+          // SizedBox(height: 40,),
+          // Text("Title of First Article: ",style: TextStyle(fontSize: 20)),
+          // SizedBox(height:10),
+          // Text(queryInText,style: TextStyle(fontSize: 20)),
 
         ],
       ),

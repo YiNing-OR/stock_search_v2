@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'Components/Stock Information Component/Component/Articles Component.dart';
+import '../Article Search Screen /Components/Component/News Information Component/Component/Articles News Component.dart';
+import '../Article Search Screen /Components/Component/News Information Component/Data/obtain_news_data.dart';
 import 'Components/Stock Information Component/Component/Search_Component_Stocks.dart';
 import 'Components/Stock Information Component/StockInfo.dart';
 
@@ -16,6 +17,13 @@ class IndividualStockScreen extends StatelessWidget {
           shrinkWrap: true,
           physics: ClampingScrollPhysics(),
           children: <Widget>[
+            ElevatedButton(
+              onPressed: () {
+                Navigator.popUntil(context, (route) => route.isFirst);
+              },
+              child: Text("Home"),
+
+            ),
             SizedBox(height: MediaQuery.of(context).size.width * 0.05),
 
             SearchComponentStocks(
@@ -27,7 +35,7 @@ class IndividualStockScreen extends StatelessWidget {
               companyName: this.companyName,
             ),
               SizedBox(height:20),
-              ArticlesComponent(),
+              ArticlesNewsComponent(queryData:queryData),
             ],
       ),
     );

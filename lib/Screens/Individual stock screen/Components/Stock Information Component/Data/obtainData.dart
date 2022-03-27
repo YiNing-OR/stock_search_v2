@@ -42,12 +42,13 @@ Future<Map> fetchStockData(){
       return Future.delayed(const Duration(seconds:3), () => stockData_map);
 }
 
-
-postAndFetchQuery(String title) async{
+///type of query can be either "title" or "ticker".
+postAndFetchQuery(String query,String type_of_query) async{
   var response= await http.post(
       Uri.parse('http://127.0.0.1:5003'),
       body: {
-        "title" : title
+        "type" : type_of_query,
+        "query" : query
       }
   )  ;
   if (response.statusCode == 200) {

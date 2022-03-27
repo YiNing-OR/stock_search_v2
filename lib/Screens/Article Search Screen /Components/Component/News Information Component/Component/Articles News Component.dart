@@ -5,11 +5,12 @@ import 'package:ir_search_engine_stocks/Screens/Article%20Search%20Screen%20/Com
 import 'Articles Card News Page.dart';
 
 class ArticlesNewsComponent extends StatefulWidget {
-  final String ticker;
+  //final String ticker;
+  final queryData;
 
   ArticlesNewsComponent({
     Key key,
-    this.ticker}) : super(key: key);
+    this.queryData}) : super(key: key);
 
   @override
   State<ArticlesNewsComponent> createState() => ArticlesNewsPageState();
@@ -31,10 +32,10 @@ class ArticlesNewsPageState extends State<ArticlesNewsComponent> {
               ArticleCardNews(
                     articleTitle: queryText.title.toString().substring(1,queryText.title.toString().length-1),
                     articleDate: queryText.datePublished.toString().substring(1,queryText.datePublished.toString().length-1),
-                    articleSummary: queryText.extract_summarizer.toString().substring(3,queryText.extract_summarizer.toString().length-1),
-                    articleLink: queryText.url.toString().substring(3,queryText.url.toString().length-1),
+                    articleSummary: queryText.extract_summarizer.toString().substring(1,queryText.extract_summarizer.toString().length-1).trim(),
+                    articleLink: queryText.url.toString().substring(1,queryText.url.toString().length-1),
                     ticker_list: queryText.stocksMentioned.toList().first.substring(1,queryText.stocksMentioned.toList().first.length-1).split(","),
-                    sentimentscore:100,
+                    sentimentscore:queryText.predict_cat.toString().substring(1,queryText.predict_cat.toString().length-1),
                   ),
               SizedBox(height: 30,)
               ],
