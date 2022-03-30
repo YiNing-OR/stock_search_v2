@@ -14,7 +14,7 @@ class HomeScreenUI extends StatefulWidget {
 }
 
 class _HomeScreenUIState extends State<HomeScreenUI> {
-  String dropdownValue = 'News';
+  String dropdownValue = 'Stocks';
   String flask_url = 'http://127.0.0.1:5003';
   TextEditingController controller = TextEditingController();
   String queryInText ="";
@@ -108,8 +108,14 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                   //if(dropdownValue=="News")
                   var result = await postAndFetchQuery(controller.text,"title");
                   queryData = queryModelFromJson(result);
-                  print("here on");
-                  print(result);
+                  var result_recency = await postAndFetchQuery(controller.text,"sorted_date");
+                  queryRecency = queryModelFromJson(result_recency);
+
+
+                  // print(result_recency);
+                  //
+                  // print("here on");
+                  // print(result);
                   controller.text="";
                   Navigator.push(
                       context,
@@ -126,40 +132,40 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
           )
           ,
 
-          TextButton(
-              onPressed: ()  async{
-                var result = await postAndFetchQuery(
-                  controller.text,"title"
-                );
-                var queryData = queryModelFromJson(result);
-                var queryRecency = queryModelFromJson(result);
-
-                var date = queryData.values.elementAt(1).datePublished.toString().substring(1,queryData.values.elementAt(1).datePublished.toString().length-1);
-                 var prediction = queryData.values.elementAt(0).predict_cat.toString().substring(1,queryData.values.elementAt(1).predict_cat.toString().length-1);
-                 var dateTime_str = Jiffy(date, "dd/MM/yyyy").format("yyyy-MM-dd");
-                 var dateTime = DateTime.parse(dateTime_str);
-                 print(prediction);
-                List<DateTime> days = List.generate(3, (i) =>  DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).subtract(Duration(days: i)));
-                print(days);
-                 // print(x.runtimeType);
-                 // print(date);
-                 // print(dateTime.runtimeType);
-                 // print(dateTime);
-                print(queryData.length);
-
-                queryInText = queryData.values.elementAt(1).predict_cat.toString();
-                setState(() {
-                  //print(result);
-                });
-              },
-              child: Text(
-                'Fetch data from flask',
-                style: TextStyle(fontSize: 20),
-              )),
-          SizedBox(height: 40,),
-          Text("Title of First Article: ",style: TextStyle(fontSize: 20)),
-          SizedBox(height:10),
-          Text(queryInText,style: TextStyle(fontSize: 20)),
+          // TextButton(
+          //     onPressed: ()  async{
+          //       var result = await postAndFetchQuery(
+          //         controller.text,"title"
+          //       );
+          //       var queryData = queryModelFromJson(result);
+          //       queryRecency = queryModelFromJson(result);
+          //
+          //       var date = queryData.values.elementAt(1).datePublished.toString().substring(1,queryData.values.elementAt(1).datePublished.toString().length-1);
+          //        var prediction = queryData.values.elementAt(0).predict_cat.toString().substring(1,queryData.values.elementAt(1).predict_cat.toString().length-1);
+          //        var dateTime_str = Jiffy(date, "dd/MM/yyyy").format("yyyy-MM-dd");
+          //        var dateTime = DateTime.parse(dateTime_str);
+          //        print(prediction);
+          //       List<DateTime> days = List.generate(3, (i) =>  DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).subtract(Duration(days: i)));
+          //       print(days);
+          //        // print(x.runtimeType);
+          //        // print(date);
+          //        // print(dateTime.runtimeType);
+          //        // print(dateTime);
+          //       print(queryData.length);
+          //
+          //       queryInText = queryRecency.values.elementAt(0).datePublished.toString();
+          //       setState(() {
+          //         //print(result);
+          //       });
+          //     },
+          //     child: Text(
+          //       'Fetch data from flask',
+          //       style: TextStyle(fontSize: 20),
+          //     )),
+          // SizedBox(height: 40,),
+          // Text("Title of First Article: ",style: TextStyle(fontSize: 20)),
+          // SizedBox(height:10),
+          // Text(queryInText,style: TextStyle(fontSize: 20)),
 
         ],
       ),

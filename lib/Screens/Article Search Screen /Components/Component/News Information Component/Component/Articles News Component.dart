@@ -47,9 +47,7 @@ class ArticlesNewsPageState extends State<ArticlesNewsComponent> {
   // }
 
   Widget build(BuildContext context) {
-    if(extractRelevance(isSelected)=="Sort by Relevance"){
-    print(extractRelevance(isSelected));}
-    else{print("Sort by Recency");}
+
     return Column(
           children: [
             ToggleButtons(
@@ -79,8 +77,8 @@ class ArticlesNewsPageState extends State<ArticlesNewsComponent> {
             ),
             SizedBox(height:10),
 
-  if(extractRelevance(isSelected)=="Sort by Relevance")
-            ListView.builder(
+            if(extractRelevance(isSelected)=="Sort by Relevance")
+              ListView.builder(
               itemCount: queryData.length,
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
@@ -106,13 +104,6 @@ class ArticlesNewsPageState extends State<ArticlesNewsComponent> {
 
             if(extractRelevance(isSelected)=="Sort by Recency")
 
-                  //
-                  // print("this");
-                  // print(queryRecency.datePublished.toString().substring(1,queryRecency.datePublished.toString().length-1),
-                  // );
-                  // queryRecency.datePublished=convertoDateFormat(queryRecency.datePublished.toString().substring(1,queryRecency.datePublished.toString().length-1));
-
-                  // queryRecency.sort((a, b) => a["datePublished"].compareTo(b["datePublished"]));
               ListView.builder(
                 itemCount: queryRecency.length,
                 scrollDirection: Axis.vertical,

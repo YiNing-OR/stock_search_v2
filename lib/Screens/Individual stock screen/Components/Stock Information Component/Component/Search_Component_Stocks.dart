@@ -81,6 +81,8 @@ class SearchComponentStocksState extends State<SearchComponentStocks> {
                   //pull data for relevant news
                   var result = await postAndFetchQuery(suggestion.the1Symbol,"ticker");
                   queryData = queryModelFromJson(result);
+                  var result_recency = await postAndFetchQuery(controller.text,"sorted_date");
+                  queryRecency = queryModelFromJson(result_recency);
                   controller.clear();
                   Navigator.push(
                       context,

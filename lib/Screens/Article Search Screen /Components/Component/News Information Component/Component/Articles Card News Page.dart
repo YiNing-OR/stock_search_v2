@@ -23,16 +23,10 @@ class ArticleCardNews extends StatefulWidget {
 
 class ArticleCardNewsState extends State<ArticleCardNews> {
 
-  // DateTime convertoDateFormat(String articleDate){
-  //   var x= Jiffy(articleDate,"dd/MM/yyyy").format("yyyy-MM-dd");
-  //   var dateTime= DateTime.parse(x);
-  // return dateTime;
-  // }
-  // var articleData=ArticleData.getData();
   @override
   Widget build(BuildContext context) {
     if(widget.sortoption=="Sort by Relevance") {
-      print(widget.sortoption);
+
       return Container(
           width: MediaQuery
               .of(context)
