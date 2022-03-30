@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import '../../../Article Search Screen /Components/Component/News Information Component/Data/obtain_news_data.dart';
+import 'Component/Graphs/Sentiment_Pie_Chart.dart';
 import 'Component/Individual Stock Price Card.dart';
 import 'Component/Individual Stock Score Card.dart';
 import 'Component/Graphs/Price Graph.dart';
-import 'Component/Graphs/Sentiment Graph.dart';
 import 'Data/obtainData.dart';
 
 class StockInformation extends StatefulWidget {
   final String ticker;
   final String companyName;
-  const StockInformation({Key key, this.ticker,this.companyName}) : super(key: key);
+  final queryData;
+  const StockInformation({Key key, this.ticker,this.companyName,this.queryData}) : super(key: key);
   @override
   State<StockInformation> createState() => StockInformationState();
 }
@@ -49,7 +51,6 @@ class StockInformationState extends State<StockInformation> {
 
   @override
   Widget build(BuildContext context){
-    print("hello");
     //pullData(widget.ticker);
     return Column(
       children: [
@@ -116,7 +117,6 @@ class StockInformationState extends State<StockInformation> {
                 SizedBox(height: 30,),
                 StockScoreCard(
                   bullOrBear: "Bear",
-                  score:"-40"
                 )
               ],
             ),
@@ -133,7 +133,7 @@ class StockInformationState extends State<StockInformation> {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.25,
-                  child: SentimentGraph(
+                  child: SentimentPieChart(
                     duration: extractDuration(isSelected),
                   ),
                 )

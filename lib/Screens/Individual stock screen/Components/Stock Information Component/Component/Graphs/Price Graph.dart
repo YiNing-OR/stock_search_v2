@@ -17,7 +17,8 @@ class PriceGraphState extends State<PriceGraph> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return widget.duration=="1 Day"? Container():
+    Column(
       children: <Widget>[
         Container(
           child: Text("Stock Price"),

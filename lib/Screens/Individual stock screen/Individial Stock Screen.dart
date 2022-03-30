@@ -33,6 +33,7 @@ class IndividualStockScreen extends StatelessWidget {
             StockInformation(
               ticker: this.ticker,
               companyName: this.companyName,
+              queryData: queryData,
             ),
               SizedBox(height:20),
               ArticlesNewsComponent(queryData:queryData),

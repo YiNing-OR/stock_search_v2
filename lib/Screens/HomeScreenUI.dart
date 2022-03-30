@@ -1,12 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:jiffy/jiffy.dart';
 import 'Article Search Screen /Components/Component/News Information Component/Data/obtain_news_data.dart';
 import 'Article Search Screen /News Screen.dart';
 import 'Individual stock screen/Components/Stock Information Component/Component/Search_Component_Stocks.dart';
 import 'Individual stock screen/Components/Stock Information Component/Data/obtainData.dart';
 import 'Individual stock screen/Components/Stock Information Component/Models/QueryModel.dart';
-import 'Individual stock screen/Individial Stock Screen.dart';
 
 class HomeScreenUI extends StatefulWidget {
   // Initial Selected Value
@@ -16,7 +14,7 @@ class HomeScreenUI extends StatefulWidget {
 }
 
 class _HomeScreenUIState extends State<HomeScreenUI> {
-  String dropdownValue = 'Stocks';
+  String dropdownValue = 'News';
   String flask_url = 'http://127.0.0.1:5003';
   TextEditingController controller = TextEditingController();
   String queryInText ="";
@@ -126,29 +124,38 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
           )
           ,
 
-          // TextButton(
-          //     onPressed: ()  async{
-          //       var result = await postAndFetchQuery(
-          //         controller.text,"title"
-          //       );
-          //       var queryData = queryModelFromJson(result);
-          //        var x = queryData.values.elementAt(1).stocksMentioned.toList().first.substring(1,queryData.values.elementAt(1).stocksMentioned.toList().first.length-1).split(",");
-          //        print(x.runtimeType);
-          //        print(x);
-          //
-          //       queryInText = queryData.values.elementAt(1).predict_cat.toString();
-          //       setState(() {
-          //         print(result);
-          //       });
-          //     },
-          //     child: Text(
-          //       'Fetch data from flask',
-          //       style: TextStyle(fontSize: 20),
-          //     )),
-          // SizedBox(height: 40,),
-          // Text("Title of First Article: ",style: TextStyle(fontSize: 20)),
-          // SizedBox(height:10),
-          // Text(queryInText,style: TextStyle(fontSize: 20)),
+          TextButton(
+              onPressed: ()  async{
+                var result = await postAndFetchQuery(
+                  controller.text,"title"
+                );
+                var queryData = queryModelFromJson(result);
+                 var date = queryData.values.elementAt(1).datePublished.toString().substring(1,queryData.values.elementAt(1).datePublished.toString().length-1);
+                 var prediction = queryData.values.elementAt(0).predict_cat.toString().substring(1,queryData.values.elementAt(1).predict_cat.toString().length-1);
+                 var dateTime_str = Jiffy(date, "dd/MM/yyyy").format("yyyy-MM-dd");
+                 var dateTime = DateTime.parse(dateTime_str);
+                 print(prediction);
+                List<DateTime> days = List.generate(3, (i) =>  DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).subtract(Duration(days: i)));
+                print(days);
+                 // print(x.runtimeType);
+                 // print(date);
+                 // print(dateTime.runtimeType);
+                 // print(dateTime);
+                print(queryData.length);
+
+                queryInText = queryData.values.elementAt(1).predict_cat.toString();
+                setState(() {
+                  //print(result);
+                });
+              },
+              child: Text(
+                'Fetch data from flask',
+                style: TextStyle(fontSize: 20),
+              )),
+          SizedBox(height: 40,),
+          Text("Title of First Article: ",style: TextStyle(fontSize: 20)),
+          SizedBox(height:10),
+          Text(queryInText,style: TextStyle(fontSize: 20)),
 
         ],
       ),

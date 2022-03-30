@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Components/Component/News Information Component/Component/Articles News Component.dart';
 import 'Components/Component/News Information Component/Component/NewsSearchComponent.dart';
-// import 'Components/Component/News Information Component/Component/NewsStockInfodart';
 
 class NewsInformationScreen extends StatelessWidget {
   final queryData;

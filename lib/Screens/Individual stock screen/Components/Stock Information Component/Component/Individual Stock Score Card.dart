@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 class StockScoreCard extends StatefulWidget {
   final String bullOrBear;
-  final String score;
 
-  const StockScoreCard({Key key, this.bullOrBear, this.score}) : super(key: key);
+  const StockScoreCard({Key key, this.bullOrBear}) : super(key: key);
   @override
   State<StockScoreCard> createState() => StockScoreCardState();
 }
@@ -23,7 +22,7 @@ class StockScoreCardState extends State<StockScoreCard> {
         ],
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Flexible(
             child: Padding(
@@ -35,15 +34,16 @@ class StockScoreCardState extends State<StockScoreCard> {
                 ),
               ),
             ),
-          ),Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text('Score: '+widget.score+"%",
-              style: TextStyle(
-                fontSize: 20,
-                color: double.parse(widget.score)>0 ? Colors.green:Colors.red
-              ),
-            ),
           ),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: Text('Score: '+widget.score+"%",
+          //     style: TextStyle(
+          //       fontSize: 20,
+          //       color: double.parse(widget.score)>0 ? Colors.green:Colors.red
+          //     ),
+          //   ),
+          // ),
 
         ],
       ),

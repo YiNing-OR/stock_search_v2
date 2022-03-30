@@ -15,7 +15,7 @@ class StockPriceCardState extends State<StockPriceCard> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.25,
-      height: 110,
+      height: 130,
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: Colors.grey, width: 2),
