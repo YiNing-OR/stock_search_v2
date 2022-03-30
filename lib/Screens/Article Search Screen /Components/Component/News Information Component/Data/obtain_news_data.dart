@@ -1,5 +1,5 @@
 var queryData;
-
+var queryRecency;
 class TickersMockData{
   static final getData =[
     {

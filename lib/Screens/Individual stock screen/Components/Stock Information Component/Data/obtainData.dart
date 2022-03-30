@@ -52,7 +52,6 @@ postAndFetchQuery(String query,String type_of_query) async{
       }
   )  ;
   if (response.statusCode == 200) {
-    //print(response.body);
     return response.body;
   };
 

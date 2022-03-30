@@ -108,6 +108,8 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                   //if(dropdownValue=="News")
                   var result = await postAndFetchQuery(controller.text,"title");
                   queryData = queryModelFromJson(result);
+                  print("here on");
+                  print(result);
                   controller.text="";
                   Navigator.push(
                       context,
@@ -130,7 +132,9 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                   controller.text,"title"
                 );
                 var queryData = queryModelFromJson(result);
-                 var date = queryData.values.elementAt(1).datePublished.toString().substring(1,queryData.values.elementAt(1).datePublished.toString().length-1);
+                var queryRecency = queryModelFromJson(result);
+
+                var date = queryData.values.elementAt(1).datePublished.toString().substring(1,queryData.values.elementAt(1).datePublished.toString().length-1);
                  var prediction = queryData.values.elementAt(0).predict_cat.toString().substring(1,queryData.values.elementAt(1).predict_cat.toString().length-1);
                  var dateTime_str = Jiffy(date, "dd/MM/yyyy").format("yyyy-MM-dd");
                  var dateTime = DateTime.parse(dateTime_str);
