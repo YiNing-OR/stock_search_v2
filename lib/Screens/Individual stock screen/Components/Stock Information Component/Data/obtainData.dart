@@ -41,6 +41,9 @@ Future<void> pullData(String ticker) async{
 Future<Map> fetchStockData(){
       return Future.delayed(const Duration(seconds:3), () => stockData_map);
 }
+Future<Map> fetchStockData_noDelay(){
+  return Future.delayed(const Duration(milliseconds:1), () => stockData_map);
+}
 
 ///type of query can be either "title" or "ticker".
 postAndFetchQuery(String query,String type_of_query) async{

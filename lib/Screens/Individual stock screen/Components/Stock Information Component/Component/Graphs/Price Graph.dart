@@ -24,7 +24,7 @@ class PriceGraphState extends State<PriceGraph> {
           child: Text("Stock Price"),
         ),
         FutureBuilder(
-            future: fetchStockData(),
+            future: fetchStockData_noDelay(),
             builder: (context,snapshot){
               if (snapshot.hasData) {
                 List<ChartData> chart_data_list =[];
