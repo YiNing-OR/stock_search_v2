@@ -1,5 +1,5 @@
-import 'package:condition/condition.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ir_search_engine_stocks/Screens/Article%20Search%20Screen%20/Components/Component/News%20Information%20Component/Data/obtain_news_data.dart';
 import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Data/obtainData.dart';
@@ -69,137 +69,149 @@ class ArticleCardNewsState extends State<ArticleCardNews> {
                       ),
                     ),
 
+                  new GestureDetector(
+                    onTap:()
+                     async
+                    {
+                    if(await launch(widget.articleLink)){
+                        }else{
+                        throw "Could not launch $widget.articleLink";
+                        }
+                      print(widget.articleLink);
 
-                  Container(
-                    padding: const EdgeInsets.all(8.0),
-                    width: MediaQuery.of(context).size.width * 0.75,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(color: Colors.grey, width: 2),
-                      borderRadius: BorderRadius.all(Radius.circular(18)),
-                      boxShadow: const [
-                        BoxShadow(blurRadius: 1),],
-                    ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                    child:Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: Text(widget.articleTitle,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(fontSize: 30),),
-                                    )),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(widget.articleSummary,
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 3,
-                                    style: TextStyle(fontSize: 15),),
-                                ),
-                                SizedBox(width:10),
-                                Row(
-                                  children: [
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(widget.articleDate,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(fontSize: 15),),
-                                        ),
-                                        Container(
-                                          child: Padding(
+                      // launch(widget.articleLink);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(8.0),
+                      width: MediaQuery.of(context).size.width * 0.75,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.grey, width: 2),
+                        borderRadius: BorderRadius.all(Radius.circular(18)),
+                        boxShadow: const [
+                          BoxShadow(blurRadius: 1),],
+                      ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                      child:Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Text(widget.articleTitle,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(fontSize: 30),),
+                                      )),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(widget.articleSummary,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 3,
+                                      style: TextStyle(fontSize: 15),),
+                                  ),
+                                  SizedBox(width:10),
+                                  Row(
+                                    children: [
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          Padding(
                                             padding: const EdgeInsets.all(8.0),
-                                            child: Text(widget.articleLink,
+                                            child: Text(widget.articleDate,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(fontSize: 15),),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                    Spacer(),
-                                    Container(
-                                      width: 120,
-                                      height: 40,
-                                      decoration: BoxDecoration(
-                                        //color: Color(0xFFCFD2D5),
-                                        border: Border.all(color: Colors.grey, width: 1),
-                                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                                      ),
-                                      child:
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Text(widget.sentimentscore=="Negative"?"B E A R":
-                                                  widget.sentimentscore=="Positive"?"B U L L" : "NEUTRAL",
-                                            style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: "Georgia",
-                                              color: widget.sentimentscore=="Negative"?Colors.red:
-                                              widget.sentimentscore=="Positive"?Colors.green : Colors.amber
-                                            ),
-                                          ),
-                                        //   Conditioned.boolean( widget.sentimentscore=="Negative",
-                                        //   trueBuilder: () => Text(
-                                        //     'B E A R',
-                                        //     style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold,fontFamily:"Georgia"),
-                                        //   ),
-                                        //   falseBuilder: () => Text(
-                                        //     'B U L L',
-                                        //     style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontFamily:"Georgia"),
-                                        //   ),
-                                        // ),
+                                          // Container(
+                                          //   child: Padding(
+                                          //     padding: const EdgeInsets.all(8.0),
+                                          //     child: Text(widget.articleLink,
+                                          //       overflow: TextOverflow.ellipsis,
+                                          //       style: TextStyle(fontSize: 15),),
+                                          //   ),
+                                          // ),
                                         ],
                                       ),
-                                    ),
+                                      Spacer(),
+                                      Container(
+                                        width: 120,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                          //color: Color(0xFFCFD2D5),
+                                          border: Border.all(color: Colors.grey, width: 1),
+                                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                                        ),
+                                        child:
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text(widget.sentimentscore=="Negative"?"B E A R":
+                                                    widget.sentimentscore=="Positive"?"B U L L" : "NEUTRAL",
+                                              style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: "Georgia",
+                                                color: widget.sentimentscore=="Negative"?Colors.red:
+                                                widget.sentimentscore=="Positive"?Colors.green : Colors.amber
+                                              ),
+                                            ),
+                                          //   Conditioned.boolean( widget.sentimentscore=="Negative",
+                                          //   trueBuilder: () => Text(
+                                          //     'B E A R',
+                                          //     style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold,fontFamily:"Georgia"),
+                                          //   ),
+                                          //   falseBuilder: () => Text(
+                                          //     'B U L L',
+                                          //     style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontFamily:"Georgia"),
+                                          //   ),
+                                          // ),
+                                          ],
+                                        ),
+                                      ),
 
-                                  ],
-                                ),
+                                    ],
+                                  ),
 
 
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                          // Positioned(
-                          //   right:10,
-                          //   bottom:30,
-                          //   child: Container(
-                          //     width: 120,
-                          //     height: 40,
-                          //     decoration: BoxDecoration(
-                          //       //color: Color(0xFFCFD2D5),
-                          //       border: Border.all(color: Colors.grey, width: 1),
-                          //       borderRadius: BorderRadius.all(Radius.circular(5)),
-                          //     ),
-                          //     child:
-                          //     Row(
-                          //       mainAxisAlignment: MainAxisAlignment.center,
-                          //       children: [Conditioned.boolean( widget.sentimentscore=="Negative",
-                          //         trueBuilder: () => Text(
-                          //           'B E A R',
-                          //           style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold,fontFamily:"Georgia"),
-                          //         ),
-                          //         falseBuilder: () => Text(
-                          //           'B U L L',
-                          //           style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontFamily:"Georgia"),
-                          //         ),
-                          //       ),],),),
-                          //
-                          // ),
+                            // Positioned(
+                            //   right:10,
+                            //   bottom:30,
+                            //   child: Container(
+                            //     width: 120,
+                            //     height: 40,
+                            //     decoration: BoxDecoration(
+                            //       //color: Color(0xFFCFD2D5),
+                            //       border: Border.all(color: Colors.grey, width: 1),
+                            //       borderRadius: BorderRadius.all(Radius.circular(5)),
+                            //     ),
+                            //     child:
+                            //     Row(
+                            //       mainAxisAlignment: MainAxisAlignment.center,
+                            //       children: [Conditioned.boolean( widget.sentimentscore=="Negative",
+                            //         trueBuilder: () => Text(
+                            //           'B E A R',
+                            //           style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold,fontFamily:"Georgia"),
+                            //         ),
+                            //         falseBuilder: () => Text(
+                            //           'B U L L',
+                            //           style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontFamily:"Georgia"),
+                            //         ),
+                            //       ),],),),
+                            //
+                            // ),
 
-                        ],
-                      ),
-
+                          ],
+                        ),
 
 
+
+                    ),
                   ),]
                 ),
     );
