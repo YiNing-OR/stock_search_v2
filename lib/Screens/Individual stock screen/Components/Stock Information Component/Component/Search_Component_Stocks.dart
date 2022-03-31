@@ -77,7 +77,7 @@ class SearchComponentStocksState extends State<SearchComponentStocks> {
                 },
                 onSuggestionSelected: (BestMatch suggestion) async{
                   //pull data for stocks
-                  pullData(suggestion.the1Symbol);
+                  await pullData(suggestion.the1Symbol);
                   //pull data for relevant news
                   var result = await postAndFetchQuery(suggestion.the1Symbol,"ticker");
                   queryData = queryModelFromJson(result);
@@ -93,7 +93,6 @@ class SearchComponentStocksState extends State<SearchComponentStocks> {
                           )
                       )
                   );
-
                 },
               )
             )
@@ -102,5 +101,6 @@ class SearchComponentStocksState extends State<SearchComponentStocks> {
       ],
     );
   }
+
 
 }

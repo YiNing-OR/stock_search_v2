@@ -94,7 +94,6 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
               onPressed: () async {
-                pullData("AAPL");
                 if (dropdownValue == "Stocks") {
                   // Navigator.push(
                   //     context,
