@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import '../Models/DailyPricesModel.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,8 +16,6 @@ Future<Map> getHttprequest(String symbolName) async {
   }else{
     print("Pull Failed");
   }
-  print("Test");
-  print(stockData);
   //for stockData, key is date,
   //var closePrice = stockData.timeSeriesDaily.values.elementAt(0).the4Close.toString();
   var testing_map = new Map();
@@ -56,7 +52,8 @@ postAndFetchQuery(String query,String type_of_query) async{
   )  ;
   if (response.statusCode == 200) {
     return response.body;
-  };
+  }else print("query failed")
+  ;
 
 
   return Null;

@@ -35,29 +35,29 @@ class StockScoreCardControllerState extends State<StockScoreCardController> {
 
       if(list_of_dates.contains(dateTime_dateTime)){
         if(prediction=="Negative"){
-          print("Negative");
-          print(prediction);
-          print(dateTime_str);
+          // print("Negative");
+          // print(prediction);
+          // print(dateTime_str);
           bear_count+=1;
         }
         if(prediction=="Positive"){
-          print("Positive");
-          print(prediction);
-          print(dateTime_str);
+          // print("Positive");
+          // print(prediction);
+          // print(dateTime_str);
 
           bull_count+=1;
         }else{
-          print("Neutral");
-          print(prediction);
-          print(dateTime_str);
+          // print("Neutral");
+          // print(prediction);
+          // print(dateTime_str);
           neutral_count+=1;
 
         }
       }
     }
-    print("bull:{$bull_count}");
-    print("bear:{$bear_count}");
-    print("neutral:{$neutral_count}");
+    // print("bull:{$bull_count}");
+    // print("bear:{$bear_count}");
+    // print("neutral:{$neutral_count}");
     total = bear_count+bull_count+neutral_count;
 
 

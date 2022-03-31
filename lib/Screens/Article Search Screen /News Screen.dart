@@ -19,9 +19,9 @@ class NewsInformationScreen extends StatelessWidget {
             Navigator.popUntil(context, (route) => route.isFirst);
           },
           child: Text("Home"),),
-        NewsSearchComponent(),
-        SizedBox(height:20),
-        ArticlesNewsComponent(queryData:queryData),
+          NewsSearchComponent(),
+          SizedBox(height:20),
+          ArticlesNewsComponent(queryData:queryData),
 
           ],
 

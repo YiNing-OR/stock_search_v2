@@ -54,9 +54,10 @@ class ArticleCardNewsState extends State<ArticleCardNews> {
                                   child: Text(ticker),
                                   onPressed: () async {
                                     pullData(ticker);
-                                    var result = await postAndFetchQuery(
-                                        ticker, "ticker");
+                                    var result = await postAndFetchQuery(ticker, "ticker");
                                     queryData = queryModelFromJson(result);
+                                    var result_recency = await postAndFetchQuery(ticker,"sorted_date_ticker");
+                                    queryRecency = queryModelFromJson(result_recency);
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
