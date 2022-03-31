@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jiffy/jiffy.dart';
+// import 'package:jiffy/jiffy.dart';
 import 'Article Search Screen /Components/Component/News Information Component/Data/obtain_news_data.dart';
 import 'Article Search Screen /News Screen.dart';
 import 'Individual stock screen/Components/Stock Information Component/Component/Search_Component_Stocks.dart';
@@ -33,113 +33,116 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
             //fit: BoxFit.cover,
           ),
           SizedBox(width: 5, height: 60),
-          Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-            SizedBox(
-                width: MediaQuery.of(context).size.width * 0.01,
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: dropdownValue == "Stocks"?
-              SearchComponentStocks(
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+              SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.01,
+              ),
+              Container(
                 width: MediaQuery.of(context).size.width * 0.8,
-              )
-                  :
-              TextField(
-                controller: controller,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Search a News",
-                  prefixIcon: Icon(Icons.search),
-                ),
-              ),
-            ),
-            SizedBox( width: MediaQuery.of(context).size.width * 0.01),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 12),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                border: Border.all(color: Colors.grey),
-              ),
-              child: DropdownButton<String>(
-                value: dropdownValue,
-                icon: const Icon(
-                  Icons.arrow_drop_down,
-                  color: Colors.grey,
-                ),
-                elevation: 16,
-                style: const TextStyle(color: Colors.black45),
-                onChanged: (newValue) {
-                  setState(() {
-                    dropdownValue = newValue;
-                  });
-                },
-                items: <String>['Stocks', 'News']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              ),
-            ),
-            SizedBox( width: MediaQuery.of(context).size.width * 0.01),
-            Container(
-                  child:TextButton(
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-                    ),
-                    onPressed: () async {
-                      if (dropdownValue == "Stocks") {
-                        String ticker = controller_typeahead.text.toUpperCase();
-                        print("test");
-                        print(ticker);
-                        await pullData(ticker);
-                        //pull data for relevant news
-                        var result = await postAndFetchQuery(ticker,"ticker");
-                        queryData = queryModelFromJson(result);
-                        var result_recency = await postAndFetchQuery(ticker,"sorted_date_ticker");
-                        queryRecency = queryModelFromJson(result_recency);
-                        controller_typeahead.clear();
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => IndividualStockScreen(
-                                  ticker: ticker,
-                                  companyName: " ",
-                                )
-                            ));
-                        //ticker="";
-                      }
-
-                      else if (dropdownValue == "News") {
-                        //if(dropdownValue=="News")
-                        var result = await postAndFetchQuery(controller.text,"title");
-                        queryData = queryModelFromJson(result);
-                        var result_recency = await postAndFetchQuery(controller.text,"sorted_date_title");
-                        queryRecency = queryModelFromJson(result_recency);
-
-
-                        // print(result_recency);
-                        //
-                        // print("here on");
-                        // print(result);
-                        controller.text="";
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    NewsInformationScreen()
-                            )
-                        );
-                      }
-
-                    },
-                    child: Text('Search',style: TextStyle(fontSize: 20),),
-                  ),
+                child: dropdownValue == "Stocks"?
+                SearchComponentStocks(
+                  width: MediaQuery.of(context).size.width * 0.8,
                 )
-          ]
+                    :
+                TextField(
+                  controller: controller,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: "Search a News",
+                    prefixIcon: Icon(Icons.search),
+                  ),
+                ),
+              ),
+              SizedBox( width: MediaQuery.of(context).size.width * 0.01),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(color: Colors.grey),
+                ),
+                child: DropdownButton<String>(
+                  value: dropdownValue,
+                  icon: const Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.grey,
+                  ),
+                  elevation: 16,
+                  style: const TextStyle(color: Colors.black45),
+                  onChanged: (newValue) {
+                    setState(() {
+                      dropdownValue = newValue;
+                    });
+                  },
+                  items: <String>['Stocks', 'News']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+              ),
+              SizedBox( width: MediaQuery.of(context).size.width * 0.01),
+              Container(
+                    child:TextButton(
+                      style: ButtonStyle(
+                        foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                      ),
+                      onPressed: () async {
+                        if (dropdownValue == "Stocks") {
+                          String ticker = controller_typeahead.text.toUpperCase();
+                          print("test");
+                          print(ticker);
+                          await pullData(ticker);
+                          //pull data for relevant news
+                          var result = await postAndFetchQuery(ticker,"ticker");
+                          queryData = queryModelFromJson(result);
+                          var result_recency = await postAndFetchQuery(ticker,"sorted_date_ticker");
+                          queryRecency = queryModelFromJson(result_recency);
+                          controller_typeahead.clear();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => IndividualStockScreen(
+                                    ticker: ticker,
+                                    companyName: " ",
+                                  )
+                              ));
+                          //ticker="";
+                        }
+
+                        else if (dropdownValue == "News") {
+                          //if(dropdownValue=="News")
+                          var result = await postAndFetchQuery(controller.text,"title");
+                          queryData = queryModelFromJson(result);
+                          var result_recency = await postAndFetchQuery(controller.text,"sorted_date_title");
+                          queryRecency = queryModelFromJson(result_recency);
+
+
+                          // print(result_recency);
+                          //
+                          // print("here on");
+                          // print(result);
+                          controller.text="";
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      NewsInformationScreen()
+                              )
+                          );
+                        }
+
+                      },
+                      child: Text('Search',style: TextStyle(fontSize: 20),),
+                    ),
+                  )
+            ]
+            ),
           ),
           SizedBox(
             height: 100,
