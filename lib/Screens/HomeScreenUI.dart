@@ -108,7 +108,7 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                   //if(dropdownValue=="News")
                   var result = await postAndFetchQuery(controller.text,"title");
                   queryData = queryModelFromJson(result);
-                  var result_recency = await postAndFetchQuery(controller.text,"sorted_date");
+                  var result_recency = await postAndFetchQuery(controller.text,"sorted_date_title");
                   queryRecency = queryModelFromJson(result_recency);
 
 

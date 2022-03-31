@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class StockScoreCard extends StatefulWidget {
-  final String bullOrBear;
+  final String bullOrBearOrNeutral;
 
-  const StockScoreCard({Key key, this.bullOrBear}) : super(key: key);
+  const StockScoreCard({Key key, this.bullOrBearOrNeutral}) : super(key: key);
   @override
   State<StockScoreCard> createState() => StockScoreCardState();
 }
@@ -27,10 +27,10 @@ class StockScoreCardState extends State<StockScoreCard> {
           Flexible(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text('Overall: '+widget.bullOrBear,
+              child: Text('Overall: '+widget.bullOrBearOrNeutral,
                 style: TextStyle(
                     fontSize: 20,
-                    color: widget.bullOrBear == "Bull" ? Colors.green:Colors.red
+                    color: widget.bullOrBearOrNeutral == "Bull" ? Colors.green:widget.bullOrBearOrNeutral == "Bear" ?Colors.red:widget.bullOrBearOrNeutral == "Neutral" ?Colors.amber:Colors.black
                 ),
               ),
             ),

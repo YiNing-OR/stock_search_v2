@@ -4,6 +4,7 @@ import 'Component/Graphs/Sentiment_Pie_Chart.dart';
 import 'Component/Individual Stock Price Card.dart';
 import 'Component/Individual Stock Score Card.dart';
 import 'Component/Graphs/Price Graph.dart';
+import 'Component/individualStockScoreCardController.dart';
 import 'Data/obtainData.dart';
 
 class StockInformation extends StatefulWidget {
@@ -115,8 +116,8 @@ class StockInformationState extends State<StockInformation> {
                     }
                 ),
                 SizedBox(height: 30,),
-                StockScoreCard(
-                  bullOrBear: "Bear",
+                StockScoreCardController(
+                  duration: extractDuration(isSelected),
                 )
               ],
             ),
