@@ -26,7 +26,6 @@ class ArticleCardNewsState extends State<ArticleCardNews> {
   @override
   Widget build(BuildContext context) {
     if(widget.sortoption=="Sort by Relevance") {
-
       return Container(
           width: MediaQuery
               .of(context)
@@ -53,7 +52,7 @@ class ArticleCardNewsState extends State<ArticleCardNews> {
                                 ElevatedButton(
                                   child: Text(ticker),
                                   onPressed: () async {
-                                    pullData(ticker);
+                                    await pullData(ticker);
                                     var result = await postAndFetchQuery(ticker, "ticker");
                                     queryData = queryModelFromJson(result);
                                     var result_recency = await postAndFetchQuery(ticker,"sorted_date_ticker");
@@ -232,10 +231,11 @@ class ArticleCardNewsState extends State<ArticleCardNews> {
                               ElevatedButton(
                                 child: Text(ticker),
                                 onPressed: () async {
-                                  pullData(ticker);
-                                  var result = await postAndFetchQuery(
-                                      ticker, "ticker");
+                                  await pullData(ticker);
+                                  var result = await postAndFetchQuery(ticker, "ticker");
                                   queryData = queryModelFromJson(result);
+                                  var result_recency = await postAndFetchQuery(ticker,"sorted_date_ticker");
+                                  queryRecency = queryModelFromJson(result_recency);
 
 
                                   Navigator.push(

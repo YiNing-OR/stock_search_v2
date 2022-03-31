@@ -17,7 +17,7 @@ class StockInformation extends StatefulWidget {
 }
 
 class StockInformationState extends State<StockInformation> {
-  List<bool> isSelected = [true,false,false,false];
+  List<bool> isSelected = [false,false,false,true];
 
   String extractDuration(List isSelected){
     int correct_index;
