@@ -11,7 +11,7 @@ class IndividualStockScreen extends StatelessWidget {
   const IndividualStockScreen({Key key, this.ticker,this.companyName}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-      return Scaffold(
+       try {return Scaffold(
         
         body: ListView(
           shrinkWrap: true,
@@ -40,5 +40,8 @@ class IndividualStockScreen extends StatelessWidget {
             ],
       ),
     );
+      }catch(e){
+        CircularProgressIndicator();
+      }
   }
 }

@@ -49,6 +49,7 @@ class SentimentPieChartModelState extends State<SentimentPieChartModel> {
                       explode: true,
                       dataLabelSettings:
                       DataLabelSettings(
+                          showZeroValue: false,
                           isVisible:true,
                           showCumulativeValues: true,
                           useSeriesColor: true,

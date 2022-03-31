@@ -28,7 +28,7 @@ class PriceGraphState extends State<PriceGraph> {
             builder: (context,snapshot){
               if (snapshot.hasData) {
                 List<ChartData> chart_data_list =[];
-                for(var i=0;i<DateControl.getDateLength(widget.duration);i++){
+                for(var i=0;i<DateControl.getDateLengthStocks(widget.duration);i++){
                   chart_data_list.add(ChartData(snapshot.data.keys.elementAt(i), snapshot.data.values.elementAt(i)));
                 }
                 return LineGraphModel(

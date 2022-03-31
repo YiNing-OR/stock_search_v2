@@ -14,6 +14,22 @@ class StockScoreCardController extends StatefulWidget {
   State<StockScoreCardController> createState() => StockScoreCardControllerState();
 }
 class StockScoreCardControllerState extends State<StockScoreCardController> {
+
+  String obtainMaxKey(int bullCount, int neutralCount, int bearCount){
+    Map theMap={"Bull": bullCount, "Neutral": neutralCount, "Bear": bearCount, };
+
+    var theValue=0.0;
+    var theKey;
+
+    theMap.forEach((k,v){
+      if(v>theValue) {
+        theValue = v;
+        theKey = k;
+      }
+    });
+
+    return (theKey);
+  }
   @override
   Widget build(BuildContext context) {
     int bull_count = 0;
@@ -22,9 +38,7 @@ class StockScoreCardControllerState extends State<StockScoreCardController> {
     int total =0;
     String result;
 
-
     List<DateTime> list_of_dates = List.generate(DateControl.getDateLength(widget.duration), (i) =>  DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).subtract(Duration(days: i)));
-
 
     for (var query_index = 0; query_index < queryRecency.length; query_index++) {
       var date = queryRecency.values.elementAt(query_index).datePublished.toString().substring(1,queryRecency.values.elementAt(query_index).datePublished.toString().length-1);
@@ -35,23 +49,16 @@ class StockScoreCardControllerState extends State<StockScoreCardController> {
 
       if(list_of_dates.contains(dateTime_dateTime)){
         if(prediction=="Negative"){
-          // print("Negative");
-          // print(prediction);
-          // print(dateTime_str);
+
           bear_count+=1;
         }
         if(prediction=="Positive"){
-          // print("Positive");
-          // print(prediction);
-          // print(dateTime_str);
+
 
           bull_count+=1;
-        }else{
-          // print("Neutral");
-          // print(prediction);
-          // print(dateTime_str);
+        }
+        if(prediction=="Neutral"){
           neutral_count+=1;
-
         }
       }
     }
@@ -60,35 +67,7 @@ class StockScoreCardControllerState extends State<StockScoreCardController> {
     // print("neutral:{$neutral_count}");
     total = bear_count+bull_count+neutral_count;
 
-
-    //neutral same as bear
-    if(neutral_count==bear_count){
-      result="Bear";
-    }
-    //neutral same as bull
-    if(neutral_count==bull_count){
-      result="Bull";
-    }
-    //bull same as bear
-    if(bear_count==bull_count){
-      result="Neutral";
-    }
-    //case where all are equal -> Neutral
-    if(neutral_count==bear_count && neutral_count==bull_count){
-      result="Neutral";
-    }
-    //bear has the most
-    if(bear_count>bull_count && bear_count>neutral_count){
-      result="Bear";
-    }
-    //bull has the most
-    if(bull_count>bear_count && bull_count>neutral_count){
-      result="Bull";
-    }
-    //neutral has the most
-    if(neutral_count>bear_count && neutral_count>bull_count){
-      result="Neutral";
-    }
+    result = obtainMaxKey(bull_count, neutral_count, bear_count);
     //no articles
     if (total==0){
       result="No Articles";

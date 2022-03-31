@@ -39,13 +39,16 @@ class SentimentPieChartState extends State<SentimentPieChart> {
         }
         if(prediction=="Positive"){
           bull_count+=1;
-        }else{
+        }
+        if(prediction=="Neutral"){
           neutral_count+=1;
         }
       }
     }
     total = bear_count+bull_count+neutral_count;
-    return total==0? Container(child: Text("There are no articles in the past ${widget.duration} "),):
+    return total==0? Container(
+      alignment: Alignment.center,
+      child: Text("There are no articles in the past ${widget.duration} "),):
     SentimentPieChartModel(
       bear_count: bear_count,
       neutral_count: neutral_count,

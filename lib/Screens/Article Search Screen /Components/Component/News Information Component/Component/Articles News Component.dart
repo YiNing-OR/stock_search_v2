@@ -84,23 +84,22 @@ class ArticlesNewsPageState extends State<ArticlesNewsComponent> {
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 var queryText = queryData.values.elementAt(index);
-        return Column(
-                    children: <Widget>[
-                    ArticleCardNews(
-                      sortoption:extractRelevance(isSelected),
-                      articleTitle: queryText.title.toString().substring(1,queryText.title.toString().length-1),
-                          articleDate: queryText.datePublished.toString().substring(1,queryText.datePublished.toString().length-1),
-                          articleSummary: queryText.extract_summarizer.toString().substring(1,queryText.extract_summarizer.toString().length-1).trim(),
-                          articleLink: queryText.url.toString().substring(1,queryText.url.toString().length-1),
-                          ticker_list: queryText.stocksMentioned.toList().first.substring(1,queryText.stocksMentioned.toList().first.length-1).split(","),
-                          sentimentscore:queryText.predict_cat.toString().substring(1,queryText.predict_cat.toString().length-1),
-                        ),
-                    SizedBox(height: 30,)
-                    ],
-                  );
-
-    },
-    ),
+                return Column(
+                            children: <Widget>[
+                            ArticleCardNews(
+                              sortoption:extractRelevance(isSelected),
+                              articleTitle: queryText.title.toString().substring(1,queryText.title.toString().length-1),
+                                  articleDate: queryText.datePublished.toString().substring(1,queryText.datePublished.toString().length-1),
+                                  articleSummary: queryText.extract_summarizer.toString().substring(1,queryText.extract_summarizer.toString().length-1).trim(),
+                                  articleLink: queryText.url.toString().substring(1,queryText.url.toString().length-1),
+                                  ticker_list: queryText.stocksMentioned.toList().first.substring(1,queryText.stocksMentioned.toList().first.length-1).split(","),
+                                  sentimentscore:queryText.predict_cat.toString().substring(1,queryText.predict_cat.toString().length-1),
+                                ),
+                            SizedBox(height: 30,)
+                            ],
+                          );
+                },
+              ),
 
             if(extractRelevance(isSelected)=="Sort by Recency")
 

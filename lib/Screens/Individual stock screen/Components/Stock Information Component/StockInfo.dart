@@ -42,7 +42,7 @@ class StockInformationState extends State<StockInformation> {
       break;
 
       case 3:{
-        return "60 Days";
+        return "150 Days";
       }
       break;
     }
@@ -71,7 +71,7 @@ class StockInformationState extends State<StockInformation> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("60 Days"),
+                child: Text("150 Days"),
               ),
             ],
             onPressed: (int index){

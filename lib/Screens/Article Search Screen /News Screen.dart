@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Components/Component/News Information Component/Component/Articles News Component.dart';
 import 'Components/Component/News Information Component/Component/NewsSearchComponent.dart';
+import 'Components/Component/News Information Component/Component/NewsSentimentComponent.dart';
 
 class NewsInformationScreen extends StatelessWidget {
   final queryData;
@@ -20,6 +21,8 @@ class NewsInformationScreen extends StatelessWidget {
           },
           child: Text("Home"),),
           NewsSearchComponent(),
+          SizedBox(height:20),
+          SentimentComponent(),
           SizedBox(height:20),
           ArticlesNewsComponent(queryData:queryData),
 
