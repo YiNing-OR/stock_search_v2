@@ -5,6 +5,7 @@ import 'Article Search Screen /News Screen.dart';
 import 'Individual stock screen/Components/Stock Information Component/Component/Search_Component_Stocks.dart';
 import 'Individual stock screen/Components/Stock Information Component/Data/obtainData.dart';
 import 'Individual stock screen/Components/Stock Information Component/Models/QueryModel.dart';
+import 'Individual stock screen/Individial Stock Screen.dart';
 
 class HomeScreenUI extends StatefulWidget {
   // Initial Selected Value
@@ -36,7 +37,7 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
             SizedBox(
-              width: 50,
+                width: MediaQuery.of(context).size.width * 0.01,
             ),
             Container(
               width: MediaQuery.of(context).size.width * 0.8,
@@ -54,7 +55,7 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                 ),
               ),
             ),
-            SizedBox(width: 20),
+            SizedBox( width: MediaQuery.of(context).size.width * 0.01),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 12),
               decoration: BoxDecoration(
@@ -83,53 +84,67 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                 }).toList(),
               ),
             ),
+            SizedBox( width: MediaQuery.of(context).size.width * 0.01),
+            Container(
+                  child:TextButton(
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                    ),
+                    onPressed: () async {
+                      if (dropdownValue == "Stocks") {
+                        String ticker = controller_typeahead.text.toUpperCase();
+                        print("test");
+                        print(ticker);
+                        await pullData(ticker);
+                        //pull data for relevant news
+                        var result = await postAndFetchQuery(ticker,"ticker");
+                        queryData = queryModelFromJson(result);
+                        var result_recency = await postAndFetchQuery(ticker,"sorted_date_ticker");
+                        queryRecency = queryModelFromJson(result_recency);
+                        controller_typeahead.clear();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => IndividualStockScreen(
+                                  ticker: ticker,
+                                  companyName: " ",
+                                )
+                            ));
+                        //ticker="";
+                      }
+
+                      else if (dropdownValue == "News") {
+                        //if(dropdownValue=="News")
+                        var result = await postAndFetchQuery(controller.text,"title");
+                        queryData = queryModelFromJson(result);
+                        var result_recency = await postAndFetchQuery(controller.text,"sorted_date_title");
+                        queryRecency = queryModelFromJson(result_recency);
+
+
+                        // print(result_recency);
+                        //
+                        // print("here on");
+                        // print(result);
+                        controller.text="";
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    NewsInformationScreen()
+                            )
+                        );
+                      }
+
+                    },
+                    child: Text('Search',style: TextStyle(fontSize: 20),),
+                  ),
+                )
           ]
           ),
           SizedBox(
             height: 100,
           ),
-          Container(
-            child:TextButton(
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-              ),
-              onPressed: () async {
-                if (dropdownValue == "Stocks") {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) =>
-                  //             IndividualStockScreen(ticker: "DND.TRT",
-                  //               companyName: "Apple Inc",)));
-                }
 
-                else if (dropdownValue == "News") {
-                  //if(dropdownValue=="News")
-                  var result = await postAndFetchQuery(controller.text,"title");
-                  queryData = queryModelFromJson(result);
-                  var result_recency = await postAndFetchQuery(controller.text,"sorted_date_title");
-                  queryRecency = queryModelFromJson(result_recency);
-
-
-                  // print(result_recency);
-                  //
-                  // print("here on");
-                  // print(result);
-                  controller.text="";
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              NewsInformationScreen()
-                      )
-                  );
-                }
-
-              },
-              child: Text('Search',style: TextStyle(fontSize: 20),),
-            ),
-          )
-          ,
 
           // TextButton(
           //     onPressed: ()  async{
