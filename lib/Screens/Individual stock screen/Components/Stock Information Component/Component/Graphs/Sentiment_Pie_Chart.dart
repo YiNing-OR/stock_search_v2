@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ir_search_engine_stocks/Screens/Article%20Search%20Screen%20/Components/Component/News%20Information%20Component/Data/obtain_news_data.dart';
 import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Component/Graphs/Date%20Control.dart';
-import 'package:jiffy/jiffy.dart';
 import 'sentiment_Pie_Chart_Model.dart';
 
 
@@ -28,7 +27,6 @@ class SentimentPieChartState extends State<SentimentPieChart> {
 
     for (var query_index = 0; query_index < queryData.length; query_index++) {
       var dateTime_str = queryData.values.elementAt(query_index).datePublished.toString().substring(1,queryData.values.elementAt(query_index).datePublished.toString().length-1);
-      //var dateTime_str = Jiffy(date, "dd/MM/yyyy").format("yyyy-MM-dd");
       var dateTime_dateTime = DateTime.parse(dateTime_str);
       var prediction = queryData.values.elementAt(query_index).predict_cat.toString().substring(1,queryData.values.elementAt(query_index).predict_cat.toString().length-1);
 
