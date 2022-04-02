@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ir_search_engine_stocks/Screens/Article%20Search%20Screen%20/Components/Component/News%20Information%20Component/Data/obtain_news_data.dart';
-import 'package:jiffy/jiffy.dart';
 
 import 'Graphs/Date Control.dart';
 import 'Individual Stock Score Card.dart';
@@ -41,8 +40,8 @@ class StockScoreCardControllerState extends State<StockScoreCardController> {
     List<DateTime> list_of_dates = List.generate(DateControl.getDateLength(widget.duration), (i) =>  DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).subtract(Duration(days: i)));
 
     for (var query_index = 0; query_index < queryRecency.length; query_index++) {
-      var date = queryRecency.values.elementAt(query_index).datePublished.toString().substring(1,queryRecency.values.elementAt(query_index).datePublished.toString().length-1);
-      var dateTime_str = Jiffy(date, "dd/MM/yyyy").format("yyyy-MM-dd");
+      var dateTime_str = queryRecency.values.elementAt(query_index).datePublished.toString().substring(1,queryRecency.values.elementAt(query_index).datePublished.toString().length-1);
+      //var dateTime_str = Jiffy(date, "dd/MM/yyyy").format("yyyy-MM-dd");
       var dateTime_dateTime = DateTime.parse(dateTime_str);
       var prediction = queryRecency.values.elementAt(query_index).predict_cat.toString().substring(1,queryRecency.values.elementAt(query_index).predict_cat.toString().length-1);
 

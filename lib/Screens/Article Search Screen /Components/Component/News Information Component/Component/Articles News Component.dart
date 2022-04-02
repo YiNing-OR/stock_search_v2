@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:ir_search_engine_stocks/Screens/Article%20Search%20Screen%20/Components/Component/News%20Information%20Component/Data/obtain_news_data.dart';
-import 'package:jiffy/jiffy.dart';
 import 'Articles Card News Page.dart';
 
 class ArticlesNewsComponent extends StatefulWidget {
@@ -35,11 +34,11 @@ class ArticlesNewsPageState extends State<ArticlesNewsComponent> {
       }
   }
 
-  DateTime convertoDateFormat(String articleDate){
-    var x= Jiffy(articleDate,"dd/MM/yyyy").format("yyyy-MM-dd");
-    var dateTime= DateTime.parse(x);
-    return dateTime;
-  }
+  // DateTime convertoDateFormat(String articleDate){
+  //   var x= Jiffy(articleDate,"dd/MM/yyyy").format("yyyy-MM-dd");
+  //   var dateTime= DateTime.parse(x);
+  //   return dateTime;
+  // }
 
   // List<dynamic> sort(List<dynamic> queryRecency ) {
   //   var x=convertoDateFormat(queryRecency.datePublished.toString().substring(1,queryRecency.datePublished.toString().length-1));
