@@ -47,7 +47,7 @@ postAndFetchQuery(String query,String type_of_query) async{
       Uri.parse('http://127.0.0.1:5003'),
       body: {
         "type" : type_of_query,
-        "query" : query
+        "query" : query.toLowerCase(),
       }
   )  ;
   if (response.statusCode == 200) {

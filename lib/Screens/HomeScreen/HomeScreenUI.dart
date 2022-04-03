@@ -50,16 +50,17 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                     child: dropdownValue == "Stocks"?
                     SearchComponentStocks(
                       width: MediaQuery.of(context).size.width * 0.8,
-                    )
-                        :
-                    TextField(
-                      controller: controller,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: "Search a News",
-                        prefixIcon: Icon(Icons.search),
-                      ),
-                    ),
+                    ) :
+                    NewsAutoComplete(),
+
+                    // TextField(
+                    //   controller: controller,
+                    //   decoration: InputDecoration(
+                    //     border: OutlineInputBorder(),
+                    //     labelText: "Search a News",
+                    //     prefixIcon: Icon(Icons.search),
+                    //   ),
+                    //),
                   ),
                   SizedBox( width: MediaQuery.of(context).size.width * 0.01),
                   Container(
@@ -121,9 +122,9 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
 
                             else if (dropdownValue == "News") {
                               //if(dropdownValue=="News")
-                              var result = await postAndFetchQuery(controller.text,"title");
+                              var result = await postAndFetchQuery(controller_News.text,"title");
                               queryData = queryModelFromJson(result);
-                              var result_recency = await postAndFetchQuery(controller.text,"sorted_date_title");
+                              var result_recency = await postAndFetchQuery(controller_News.text,"sorted_date_title");
                               queryRecency = queryModelFromJson(result_recency);
 
 
@@ -131,7 +132,7 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                               //
                               // print("here on");
                               // print(result);
-                              controller.text="";
+                              controller_News.text="";
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -150,7 +151,6 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                 SizedBox(
                   height: 50,
                 ),
-                NewsAutoComplete(),
                 Container(
                     child: WordCloudExample(),
                     width: 1000,
