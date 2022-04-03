@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ir_search_engine_stocks/Screens/HomeScreen/wordCloud/WordCloud_data.dart';
 import 'package:ir_search_engine_stocks/Screens/HomeScreen/wordCloud/wordCloud.dart';
+import '../Article Search Screen /Components/Component/News Information Component/Component/NewsAutoComplete.dart';
 import '../Article Search Screen /Components/Component/News Information Component/Data/obtain_news_data.dart';
 import '../Article Search Screen /News Screen.dart';
 import '../Individual stock screen/Components/Stock Information Component/Component/Search_Component_Stocks.dart';
@@ -89,15 +90,15 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                       }).toList(),
                     ),
                   ),
-                  SizedBox( width: MediaQuery.of(context).size.width * 0.01),
-                  Container(
+                  //SizedBox( width: MediaQuery.of(context).size.width * 0.001),
+                  Expanded(
                         child:TextButton(
                           style: ButtonStyle(
                             foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
                           ),
                           onPressed: () async {
                             if (dropdownValue == "Stocks") {
-                              String ticker = controller_typeahead.text.toUpperCase();
+                              String ticker = controller_typeahead_stocks.text.toUpperCase();
                               print("test");
                               print(ticker);
                               await pullData(ticker);
@@ -106,7 +107,7 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                               queryData = queryModelFromJson(result);
                               var result_recency =  postAndFetchQuery(ticker,"sorted_date_ticker");
                               queryRecency = queryModelFromJson(result_recency);
-                              controller_typeahead.clear();
+                              controller_typeahead_stocks.clear();
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -149,48 +150,51 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                 SizedBox(
                   height: 50,
                 ),
+                NewsAutoComplete(),
                 Container(
                     child: WordCloudExample(),
                     width: 1000,
                 ),
+
               ],
             ),
 
 
-            // TextButton(
-            //     onPressed: ()  async{
-            //       var result = await postAndFetchQuery(
-            //         controller.text,"title"
-            //       );
-            //       var queryData = queryModelFromJson(result);
-            //       queryRecency = queryModelFromJson(result);
-            //
-            //       var date = queryData.values.elementAt(1).datePublished.toString().substring(1,queryData.values.elementAt(1).datePublished.toString().length-1);
-            //        var prediction = queryData.values.elementAt(0).predict_cat.toString().substring(1,queryData.values.elementAt(1).predict_cat.toString().length-1);
-            //        var dateTime_str = Jiffy(date, "dd/MM/yyyy").format("yyyy-MM-dd");
-            //        var dateTime = DateTime.parse(dateTime_str);
-            //        print(prediction);
-            //       List<DateTime> days = List.generate(3, (i) =>  DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).subtract(Duration(days: i)));
-            //       print(days);
-            //        // print(x.runtimeType);
-            //        // print(date);
-            //        // print(dateTime.runtimeType);
-            //        // print(dateTime);
-            //       print(queryData.length);
-            //
-            //       queryInText = queryRecency.values.elementAt(0).datePublished.toString();
-            //       setState(() {
-            //         //print(result);
-            //       });
-            //     },
-            //     child: Text(
-            //       'Fetch data from flask',
-            //       style: TextStyle(fontSize: 20),
-            //     )),
-            // SizedBox(height: 40,),
-            // Text("Title of First Article: ",style: TextStyle(fontSize: 20)),
-            // SizedBox(height:10),
-            // Text(queryInText,style: TextStyle(fontSize: 20)),
+            TextButton(
+                onPressed: ()  async{
+                  var result = await postAndFetchQuery(
+                    controller.text,"title"
+                  );
+                  print(result);
+                  var queryData = queryModelFromJson(result);
+                  queryRecency = queryModelFromJson(result);
+                  print("testing");
+                  print(queryRecency);
+
+                  var date = queryData.values.elementAt(1).datePublished.toString().substring(1,queryData.values.elementAt(1).datePublished.toString().length-1);
+                   var prediction = queryData.values.elementAt(0).predict_cat.toString();
+                   print(prediction);
+                  List<DateTime> days = List.generate(3, (i) =>  DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).subtract(Duration(days: i)));
+                  print(days);
+                   // print(x.runtimeType);
+                   // print(date);
+                   // print(dateTime.runtimeType);
+                   // print(dateTime);
+                  print(queryData.length);
+
+                  queryInText = queryRecency.values.elementAt(0).datePublished.toString();
+                  setState(() {
+                    //print(result);
+                  });
+                },
+                child: Text(
+                  'Fetch data from flask',
+                  style: TextStyle(fontSize: 20),
+                )),
+            SizedBox(height: 40,),
+            Text("Title of First Article: ",style: TextStyle(fontSize: 20)),
+            SizedBox(height:10),
+            Text(queryInText,style: TextStyle(fontSize: 20)),
 
           ],
         ),

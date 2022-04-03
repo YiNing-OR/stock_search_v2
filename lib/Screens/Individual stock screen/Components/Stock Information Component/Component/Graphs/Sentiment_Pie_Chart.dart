@@ -27,7 +27,7 @@ class SentimentPieChartState extends State<SentimentPieChart> {
 
     for (var query_index = 0; query_index < queryData.length; query_index++) {
       var dateTime_str = queryData.values.elementAt(query_index).datePublished.toString().substring(1,queryData.values.elementAt(query_index).datePublished.toString().length-1);
-      var dateTime_dateTime = DateTime.parse(dateTime_str);
+      var dateTime_dateTime = DateTime.parse(dateTime_str.replaceAll("/", "-"));
       var prediction = queryData.values.elementAt(query_index).predict_cat.toString().substring(1,queryData.values.elementAt(query_index).predict_cat.toString().length-1);
 
 

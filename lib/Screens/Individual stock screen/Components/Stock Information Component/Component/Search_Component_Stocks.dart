@@ -7,7 +7,7 @@ import '../../../Individial Stock Screen.dart';
 import '../Data/obtainData.dart';
 import '../Models/SearchSymbolModel.dart';
 
-TextEditingController controller_typeahead = TextEditingController();
+TextEditingController controller_typeahead_stocks = TextEditingController();
 
 class SearchComponentStocks extends StatefulWidget {
   final width;
@@ -45,7 +45,7 @@ class SearchComponentStocksState extends State<SearchComponentStocks> {
                 hideOnEmpty: true,
                 textFieldConfiguration: TextFieldConfiguration(
                     autofocus: true,
-                    controller: controller_typeahead,
+                    controller: controller_typeahead_stocks,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: "Search a Stock",
@@ -83,7 +83,7 @@ class SearchComponentStocksState extends State<SearchComponentStocks> {
                   queryData = queryModelFromJson(result);
                   var result_recency = await postAndFetchQuery(suggestion.the1Symbol,"sorted_date_ticker");
                   queryRecency = queryModelFromJson(result_recency);
-                  controller_typeahead.clear();
+                  controller_typeahead_stocks.clear();
                   Navigator.push(
                       context,
                       MaterialPageRoute(

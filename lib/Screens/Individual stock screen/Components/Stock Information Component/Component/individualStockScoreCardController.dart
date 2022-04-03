@@ -42,7 +42,7 @@ class StockScoreCardControllerState extends State<StockScoreCardController> {
     for (var query_index = 0; query_index < queryRecency.length; query_index++) {
       var dateTime_str = queryRecency.values.elementAt(query_index).datePublished.toString().substring(1,queryRecency.values.elementAt(query_index).datePublished.toString().length-1);
       //var dateTime_str = Jiffy(date, "dd/MM/yyyy").format("yyyy-MM-dd");
-      var dateTime_dateTime = DateTime.parse(dateTime_str);
+      var dateTime_dateTime = DateTime.parse(dateTime_str.replaceAll("/", "-"));
       var prediction = queryRecency.values.elementAt(query_index).predict_cat.toString().substring(1,queryRecency.values.elementAt(query_index).predict_cat.toString().length-1);
 
 
