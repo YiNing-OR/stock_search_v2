@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ir_search_engine_stocks/Screens/HomeScreen/wordCloud/WordCloud_data.dart';
 import 'package:ir_search_engine_stocks/Screens/HomeScreen/wordCloud/wordCloud.dart';
-import '../Article Search Screen /Components/Component/News Information Component/Component/NewsAutoComplete.dart';
+import '../Article Search Screen /Components/Component/News Information Component/Component/NewsAutoComplete_main.dart';
 import '../Article Search Screen /Components/Component/News Information Component/Data/obtain_news_data.dart';
 import '../Article Search Screen /News Screen.dart';
 import '../Individual stock screen/Components/Stock Information Component/Component/Search_Component_Stocks.dart';
@@ -17,7 +17,7 @@ class HomeScreenUI extends StatefulWidget {
 }
 
 class _HomeScreenUIState extends State<HomeScreenUI> {
-  String dropdownValue = 'Stocks';
+  String dropdownValue = 'News';
   String flask_url = 'http://127.0.0.1:5003';
   TextEditingController controller = TextEditingController();
   String queryInText ="";
@@ -126,20 +126,19 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                               queryData = queryModelFromJson(result);
                               var result_recency = await postAndFetchQuery(controller_News.text,"sorted_date_title");
                               queryRecency = queryModelFromJson(result_recency);
-
-
-                              // print(result_recency);
-                              //
-                              // print("here on");
-                              // print(result);
-                              controller_News.text="";
+                              var queryText="";
+                              queryText = await postAndFetchQuery(controller_News.text,"checker");
+                              originalText=controller_News.text;
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          NewsInformationScreen()
+                                          NewsInformationScreen(
+                                            queryText: queryText,
+                                          )
                                   )
                               );
+                              controller_News.text="";
                             }
 
                           },
@@ -160,41 +159,41 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
             ),
 
 
-            TextButton(
-                onPressed: ()  async{
-                  var result = await postAndFetchQuery(
-                    controller.text,"title"
-                  );
-                  print(result);
-                  var queryData = queryModelFromJson(result);
-                  queryRecency = queryModelFromJson(result);
-                  print("testing");
-                  print(queryRecency);
-
-                  var date = queryData.values.elementAt(1).datePublished.toString().substring(1,queryData.values.elementAt(1).datePublished.toString().length-1);
-                   var prediction = queryData.values.elementAt(0).predict_cat.toString();
-                   print(prediction);
-                  List<DateTime> days = List.generate(3, (i) =>  DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).subtract(Duration(days: i)));
-                  print(days);
-                   // print(x.runtimeType);
-                   // print(date);
-                   // print(dateTime.runtimeType);
-                   // print(dateTime);
-                  print(queryData.length);
-
-                  queryInText = queryRecency.values.elementAt(0).datePublished.toString();
-                  setState(() {
-                    //print(result);
-                  });
-                },
-                child: Text(
-                  'Fetch data from flask',
-                  style: TextStyle(fontSize: 20),
-                )),
-            SizedBox(height: 40,),
-            Text("Title of First Article: ",style: TextStyle(fontSize: 20)),
-            SizedBox(height:10),
-            Text(queryInText,style: TextStyle(fontSize: 20)),
+            // TextButton(
+            //     onPressed: ()  async{
+            //       var result = await postAndFetchQuery(
+            //         controller.text,"title"
+            //       );
+            //       print(result);
+            //       var queryData = queryModelFromJson(result);
+            //       queryRecency = queryModelFromJson(result);
+            //       print("testing");
+            //       print(queryRecency);
+            //
+            //       var date = queryData.values.elementAt(1).datePublished.toString().substring(1,queryData.values.elementAt(1).datePublished.toString().length-1);
+            //        var prediction = queryData.values.elementAt(0).predict_cat.toString();
+            //        print(prediction);
+            //       List<DateTime> days = List.generate(3, (i) =>  DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).subtract(Duration(days: i)));
+            //       print(days);
+            //        // print(x.runtimeType);
+            //        // print(date);
+            //        // print(dateTime.runtimeType);
+            //        // print(dateTime);
+            //       print(queryData.length);
+            //
+            //       queryInText = queryRecency.values.elementAt(0).datePublished.toString();
+            //       setState(() {
+            //         //print(result);
+            //       });
+            //     },
+            //     child: Text(
+            //       'Fetch data from flask',
+            //       style: TextStyle(fontSize: 20),
+            //     )),
+            // SizedBox(height: 40,),
+            // Text("Title of First Article: ",style: TextStyle(fontSize: 20)),
+            // SizedBox(height:10),
+            // Text(queryInText,style: TextStyle(fontSize: 20)),
 
           ],
         ),
