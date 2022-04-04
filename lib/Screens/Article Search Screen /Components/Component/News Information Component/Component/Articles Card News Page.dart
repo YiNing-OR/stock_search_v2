@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ir_search_engine_stocks/Screens/HomeScreen/HomeScreenUI.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ir_search_engine_stocks/Screens/Article%20Search%20Screen%20/Components/Component/News%20Information%20Component/Data/obtain_news_data.dart';
@@ -67,6 +68,7 @@ class ArticleCardNewsState extends State<ArticleCardNews> {
                                                 )
                                         )
                                     );
+                                    startTime = DateTime.now();
                                   },
                                 ),
 

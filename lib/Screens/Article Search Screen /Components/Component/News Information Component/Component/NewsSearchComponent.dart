@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ir_search_engine_stocks/Screens/Article%20Search%20Screen%20/News%20Screen.dart';
+import 'package:ir_search_engine_stocks/Screens/HomeScreen/HomeScreenUI.dart';
 import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Data/obtainData.dart';
 import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Models/QueryModel.dart';
 import '../Data/obtain_news_data.dart';
@@ -68,6 +69,7 @@ class NewsSearchComponentState extends State<NewsSearchComponent> {
                                 NewsInformationScreen()
                         )
                     );
+                    startTime = DateTime.now();
                   },
                 child: Text('Search',style: TextStyle(fontSize: 20),),
               ),

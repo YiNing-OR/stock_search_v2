@@ -9,6 +9,9 @@ import '../Individual stock screen/Components/Stock Information Component/Data/o
 import '../Individual stock screen/Components/Stock Information Component/Models/QueryModel.dart';
 import '../Individual stock screen/Individial Stock Screen.dart';
 
+DateTime startTime;
+DateTime endTime;
+
 class HomeScreenUI extends StatefulWidget {
   // Initial Selected Value
   // String dropdownvalue = 'Stocks';
@@ -106,7 +109,7 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                               //pull data for relevant news
                               var result = await postAndFetchQuery(ticker,"ticker");
                               queryData = queryModelFromJson(result);
-                              var result_recency =  postAndFetchQuery(ticker,"sorted_date_ticker");
+                              var result_recency = await postAndFetchQuery(ticker,"sorted_date_ticker");
                               queryRecency = queryModelFromJson(result_recency);
                               controller_typeahead_stocks.clear();
                               Navigator.push(
@@ -117,6 +120,7 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                                         companyName: " ",
                                       )
                                   ));
+                              startTime = DateTime.now();
                               //ticker="";
                             }
 
@@ -139,6 +143,7 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                                   )
                               );
                               controller_News.text="";
+                              startTime = DateTime.now();
                             }
 
                           },

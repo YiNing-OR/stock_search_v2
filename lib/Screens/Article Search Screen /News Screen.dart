@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ir_search_engine_stocks/Screens/HomeScreen/HomeScreenUI.dart';
 import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Data/obtainData.dart';
 import 'package:ir_search_engine_stocks/Screens/Individual%20stock%20screen/Components/Stock%20Information%20Component/Models/QueryModel.dart';
 import 'Components/Component/News Information Component/Component/Articles News Component.dart';
@@ -11,15 +12,12 @@ class NewsInformationScreen extends StatelessWidget {
   final queryText;
   const NewsInformationScreen({Key key,this.queryText}) : super(key: key);
 
-  ///returns true if same, false if different
-  bool checkIfSame(){
-
-  }
-
   @override
   Widget build(BuildContext context){
     String og_text = originalText;
     print("og_text: $og_text");
+    endTime = DateTime.now();
+    var totalTime = endTime.difference(startTime).inMicroseconds/1000000;
 
     return Scaffold(
       body: ListView(
@@ -58,13 +56,40 @@ class NewsInformationScreen extends StatelessWidget {
                               )
                       )
                   );
+                  startTime = DateTime.now();
                   controller_News_2.text="";
                 },
                 child: Text('Search',
                   style: TextStyle(fontSize: 20),),)
             ],
           ),
-          SizedBox(height:20),
+          Row(
+            children: [
+              SizedBox(width:80),
+              Container(
+                  padding: const EdgeInsets.only(top:4.0,bottom: 4.0),
+                  child: Text.rich(
+                    TextSpan(
+                      text: 'Time Taken: ',
+                      style: TextStyle(fontSize: 15),
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: totalTime.toString(),
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w500,color:Colors.black54,fontStyle: FontStyle.italic
+                            )),
+                        TextSpan(
+                          text: ' seconds',
+                          style: TextStyle(fontSize: 15),
+                        )
+
+                        // can add more TextSpans here...
+                      ],
+                    ),
+                  ),
+                ),
+            ],
+          ),
           Column(
             children: [
               Row(
@@ -125,6 +150,7 @@ class NewsInformationScreen extends StatelessWidget {
                                           )
                                   )
                               );
+                              startTime = DateTime.now();
                             },
                           ),
 
@@ -137,6 +163,8 @@ class NewsInformationScreen extends StatelessWidget {
               ):
               Container(
               ),
+
+
             ],
           ),
           SizedBox(height: 30,),
