@@ -24,11 +24,25 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
   String flask_url = 'http://127.0.0.1:5003';
   TextEditingController controller = TextEditingController();
   String queryInText ="";
+  bool updating = false;
+
 
   @override
   Widget build(BuildContext context) {
     Word_list.shuffle();
-    return Scaffold(
+    return updating?
+        Scaffold(
+          body: Center(child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(),
+              SizedBox(height: 10,),
+              Text("Updating Data, Please Wait"),
+            ],
+          ))
+        )
+
+        :Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -45,6 +59,21 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
                 Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                  SizedBox(width:10),
+                  IconButton(
+                    icon: const Icon(Icons.refresh),
+                      onPressed: () async{
+                        setState(() {
+                          updating = true;
+                        });
+                        var updateComplete = await postAndFetchQuery("refresh","refresh");
+                        print(updateComplete);
+                        setState(() {
+                          updating = false;
+                        });
+                      },
+                   ),
+
                   SizedBox(
                       width: MediaQuery.of(context).size.width * 0.01,
                   ),
@@ -167,9 +196,10 @@ class _HomeScreenUIState extends State<HomeScreenUI> {
             // TextButton(
             //     onPressed: ()  async{
             //       var result = await postAndFetchQuery(
-            //         controller.text,"title"
+            //           controller_News.text,"title"
             //       );
             //       print(result);
+            //
             //       var queryData = queryModelFromJson(result);
             //       queryRecency = queryModelFromJson(result);
             //       print("testing");
